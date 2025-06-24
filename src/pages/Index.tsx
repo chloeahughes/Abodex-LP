@@ -148,6 +148,16 @@ const Index = () => {
     { feature: "Clause-level audit trail", abodex: true, competitors: "limited", manual: true }
   ];
 
+  const renderCheckIcon = (value: boolean | string) => {
+    if (value === true) {
+      return <Check className="w-5 h-5 text-green-500 mx-auto" />;
+    } else if (value === "partial" || value === "limited") {
+      return <AlertTriangle className="w-5 h-5 text-yellow-500 mx-auto" />;
+    } else {
+      return <X className="w-5 h-5 text-red-500 mx-auto" />;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Navigation */}
@@ -322,31 +332,13 @@ const Index = () => {
                     <tr key={index} className="border-t border-slate-200">
                       <td className="py-4 px-6 text-slate-900">{row.feature}</td>
                       <td className="py-4 px-6 text-center">
-                        {row.abodex === true ? (
-                          <Check className="w-5 h-5 text-green-500 mx-auto" />
-                        ) : row.abodex === "partial" ? (
-                          <AlertTriangle className="w-5 h-5 text-yellow-500 mx-auto" />
-                        ) : (
-                          <X className="w-5 h-5 text-red-500 mx-auto" />
-                        )}
+                        {renderCheckIcon(row.abodex)}
                       </td>
                       <td className="py-4 px-6 text-center">
-                        {row.competitors === true ? (
-                          <Check className="w-5 h-5 text-green-500 mx-auto" />
-                        ) : row.competitors === "partial" ? (
-                          <AlertTriangle className="w-5 h-5 text-yellow-500 mx-auto" />
-                        ) : row.competitors === "limited" ? (
-                          <AlertTriangle className="w-5 h-5 text-yellow-500 mx-auto" />
-                        ) : (
-                          <X className="w-5 h-5 text-red-500 mx-auto" />
-                        )}
+                        {renderCheckIcon(row.competitors)}
                       </td>
                       <td className="py-4 px-6 text-center">
-                        {row.manual === true ? (
-                          <Check className="w-5 h-5 text-green-500 mx-auto" />
-                        ) : (
-                          <X className="w-5 h-5 text-red-500 mx-auto" />
-                        )}
+                        {renderCheckIcon(row.manual)}
                       </td>
                     </tr>
                   ))}
