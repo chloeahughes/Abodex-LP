@@ -312,38 +312,39 @@ const Index = () => {
       {/* Comparison Table */}
       <section className="py-20 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 text-center mb-12">
-            How Abodex Compares
-          </h2>
-          
-          <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-slate-100">
-                  <tr>
-                    <th className="text-left py-4 px-6 font-semibold text-slate-900">Feature</th>
-                    <th className="text-center py-4 px-6 font-semibold text-blue-600">Abodex</th>
-                    <th className="text-center py-4 px-6 font-semibold text-slate-600">Competitors</th>
-                    <th className="text-center py-4 px-6 font-semibold text-slate-600">Manual</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonData.map((row, index) => (
-                    <tr key={index} className="border-t border-slate-200">
-                      <td className="py-4 px-6 text-slate-900">{row.feature}</td>
-                      <td className="py-4 px-6 text-center">
-                        {renderCheckIcon(row.abodex)}
-                      </td>
-                      <td className="py-4 px-6 text-center">
-                        {renderCheckIcon(row.competitors)}
-                      </td>
-                      <td className="py-4 px-6 text-center">
-                        {renderCheckIcon(row.manual)}
-                      </td>
+          <div className="bg-gradient-to-r from-purple-600 to-purple-900 text-white p-6 rounded-lg">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white text-center">
+              How Abodex Compares
+            </h2>
+            <div className="bg-white rounded-2xl overflow-hidden shadow-lg text-slate-900">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-slate-100">
+                    <tr>
+                      <th className="text-left py-4 px-6 font-semibold text-slate-900">Feature</th>
+                      <th className="text-center py-4 px-6 font-semibold text-blue-600">Abodex</th>
+                      <th className="text-center py-4 px-6 font-semibold text-slate-600">Competitors</th>
+                      <th className="text-center py-4 px-6 font-semibold text-slate-600">Manual</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {comparisonData.map((row, index) => (
+                      <tr key={index} className="border-t border-slate-200">
+                        <td className="py-4 px-6 text-slate-900">{row.feature}</td>
+                        <td className="py-4 px-6 text-center">
+                          {renderCheckIcon(row.abodex)}
+                        </td>
+                        <td className="py-4 px-6 text-center">
+                          {renderCheckIcon(row.competitors)}
+                        </td>
+                        <td className="py-4 px-6 text-center">
+                          {renderCheckIcon(row.manual)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
