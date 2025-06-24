@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -28,6 +28,28 @@ const Index = () => {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [showWaitlistModal, setShowWaitlistModal] = useState(false);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+  const rotatingWords = [
+    "Data Entry",
+    "Lease Extraction", 
+    "NOI Calculations",
+    "Rent Roll Parsing",
+    "Zoning Lookups",
+    "Cap Rate Input",
+    "OM Summarizing",
+    "Comps Formatting",
+    "Unit Mix Cleaning",
+    "Clause Tagging"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % rotatingWords.length);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleWaitlistSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -120,10 +142,10 @@ const Index = () => {
   ];
 
   const comparisonData = [
-    { feature: "Built for real estate", abodex: true, hebbia: false, manual: false },
-    { feature: "Structured deal data + UI/API", abodex: true, hebbia: "partial", manual: false },
-    { feature: "Easy for small teams", abodex: true, hebbia: false, manual: false },
-    { feature: "Clause-level audit trail", abodex: true, hebbia: "limited", manual: true }
+    { feature: "Built for real estate", abodex: true, competitors: false, manual: false },
+    { feature: "Structured deal data + UI/API", abodex: true, competitors: "partial", manual: false },
+    { feature: "Easy for small teams", abodex: true, competitors: false, manual: false },
+    { feature: "Clause-level audit trail", abodex: true, competitors: "limited", manual: true }
   ];
 
   return (
@@ -177,10 +199,6 @@ const Index = () => {
               Join Early Access
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-4">
-              <Play className="mr-2 w-5 h-5" />
-              Watch Demo
-            </Button>
           </div>
           
           {/* Hero Visual */}
@@ -227,15 +245,29 @@ const Index = () => {
       </section>
 
       {/* Problem & Vision */}
-      <section className="py-20 bg-slate-50">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            Stop Wasting Hours on Data Entry
-          </h2>
-          <p className="text-xl text-slate-600 leading-relaxed">
-            Investors and underwriters waste hours rekeying PDFs. Abodex is your AI copilot for 
-            extracting insights, automating due diligence, and connecting your tools — without the busywork.
-          </p>
+      <section className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Stop Wasting Hours on{" "}
+                <span className="text-purple-500 transition-all duration-300">
+                  {rotatingWords[currentWordIndex]}
+                </span>
+              </h2>
+              <p className="text-xl text-slate-300 leading-relaxed">
+                Investors and underwriters waste hours rekeying PDFs. Abodex is your AI copilot for 
+                extracting insights, automating due diligence, and connecting your tools — without the busywork.
+              </p>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <img 
+                src="/lovable-uploads/5d3d4abb-6c8e-4e9f-8be7-6965985e1f1e.png" 
+                alt="Abodex Logo" 
+                className="w-64 h-64 object-contain"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -281,7 +313,7 @@ const Index = () => {
                   <tr>
                     <th className="text-left py-4 px-6 font-semibold text-slate-900">Feature</th>
                     <th className="text-center py-4 px-6 font-semibold text-blue-600">Abodex</th>
-                    <th className="text-center py-4 px-6 font-semibold text-slate-600">Hebbia</th>
+                    <th className="text-center py-4 px-6 font-semibold text-slate-600">Competitors</th>
                     <th className="text-center py-4 px-6 font-semibold text-slate-600">Manual</th>
                   </tr>
                 </thead>
@@ -299,11 +331,11 @@ const Index = () => {
                         )}
                       </td>
                       <td className="py-4 px-6 text-center">
-                        {row.hebbia === true ? (
+                        {row.competitors === true ? (
                           <Check className="w-5 h-5 text-green-500 mx-auto" />
-                        ) : row.hebbia === "partial" ? (
+                        ) : row.competitors === "partial" ? (
                           <AlertTriangle className="w-5 h-5 text-yellow-500 mx-auto" />
-                        ) : row.hebbia === "limited" ? (
+                        ) : row.competitors === "limited" ? (
                           <AlertTriangle className="w-5 h-5 text-yellow-500 mx-auto" />
                         ) : (
                           <X className="w-5 h-5 text-red-500 mx-auto" />
@@ -338,7 +370,11 @@ const Index = () => {
           <div className="bg-slate-900 rounded-2xl p-8 text-left">
             <div className="flex items-center justify-between mb-6">
               <span className="text-slate-400">Demo: Document Processing</span>
-              <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+              <Button 
+                size="sm" 
+                className="bg-blue-600 hover:bg-blue-700"
+                onClick={() => setShowWaitlistModal(true)}
+              >
                 <Play className="w-4 h-4 mr-2" />
                 Try the Beta
               </Button>
@@ -402,51 +438,6 @@ const Index = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Social Proof */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
-            Trusted by Real Estate Professionals
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="shadow-lg">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <blockquote className="text-slate-600 mb-4 italic">
-                  "Abodex saved us 15+ hours per week on underwriting tasks. 
-                  The AI extraction is incredibly accurate."
-                </blockquote>
-                <div className="text-sm text-slate-500">
-                  — Private Equity Analyst, San Francisco
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="shadow-lg">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <blockquote className="text-slate-600 mb-4 italic">
-                  "Finally, a tool built specifically for real estate. 
-                  The API integration with our CRM was seamless."
-                </blockquote>
-                <div className="text-sm text-slate-500">
-                  — Investment Manager, New York
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
