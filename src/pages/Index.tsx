@@ -521,7 +521,85 @@ const Index = () => {
           </div>
         </div>
       </footer>
+      {/* ────────────────── WAIT-LIST MODAL ────────────────── */}
+      {showWaitlistModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+          <div className="w-full max-w-md rounded-2xl bg-white p-8">
+            <h3 className="mb-6 text-center text-2xl font-bold text-slate-900">
+              Join Abodex Early Access
+            </h3>
 
+            <form onSubmit={handleWaitlistSubmit} className="space-y-4">
+              {/* name */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-700">
+                  Name *
+                </label>
+                <Input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your full name"
+                  required
+                />
+              </div>
+
+              {/* email */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-700">
+                  Email *
+                </label>
+                <Input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+
+              {/* company */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-700">
+                  Company
+                </label>
+                <Input
+                  type="text"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  placeholder="Your company name"
+                />
+              </div>
+
+              {/* perk banner */}
+              <div className="rounded-lg bg-blue-50 p-4">
+                <p className="text-sm text-blue-700">
+                  🎁 <strong>Beta Perk:</strong> Get 50 documents processed free
+                  during our private beta!
+                </p>
+              </div>
+
+              {/* actions */}
+              <div className="flex space-x-3">
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="flex-1"
+                  onClick={() => setShowWaitlistModal(false)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                >
+                  Join Waitlist
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
