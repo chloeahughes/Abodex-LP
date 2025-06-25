@@ -135,10 +135,112 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* NAVBAR (unchanged) */}
-      {/* … same navbar code as before … */}
+      {/* ────────────────── NAVBAR ────────────────── */}
+      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-2">
+              {/* Logo image */}
+              <img
+                src="/uploads/abodexoslogo.png"   // public folder path
+                alt="Abodex logo"
+                className="w-8 h-8 rounded-lg"
+              />
+              {/* Brand name */}
+              <span className="text-xl font-bold text-slate-900">Abodex</span>
+            </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#features" className="text-slate-600 hover:text-slate-900 transition-colors">Features</a>
+              <a href="#pricing"  className="text-slate-600 hover:text-slate-900 transition-colors">Pricing</a>
+              <a href="#demo"     className="text-slate-600 hover:text-slate-900 transition-colors">Demo</a>
+              <Button
+                onClick={() => setShowWaitlistModal(true)}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              >
+                Join Waitlist
+              </Button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
 
       {/* HERO */}
-      {/* … hero code exactly as in previous message … */}
+      {/* ────────────────── HERO ────────────────── */}
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <Badge className="mb-6 bg-blue-50 text-blue-700">🚀 Now in Private Beta</Badge>
+
+          <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
+            From PDFs to
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              {" "}Property Intelligence
+            </span>
+            <br />— Instantly
+          </h1>
+
+          <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Abodex turns leases, OMs, and rent rolls into clean, structured data.
+            Automate underwriting, analysis, and reporting with one AI-powered tool.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Button
+              size="lg"
+              onClick={() => setShowWaitlistModal(true)}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-4"
+            >
+              Join Early Access
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </div>
+
+          {/* Hero visual */}
+          <div className="relative max-w-5xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
+              <div className="bg-gradient-to-r from-slate-800 to-slate-900 p-6">
+                {/* window controls */}
+                <div className="flex items-center space-x-2 mb-4">
+                  <div className="flex space-x-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full" />
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full" />
+                    <div className="w-3 h-3 bg-green-500 rounded-full" />
+                  </div>
+                  <span className="text-slate-400 text-sm ml-4">AbodexOS – Document Processing</span>
+                </div>
+                {/* three-column layout */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                  {/* input */}
+                  <div className="space-y-2">
+                    <div className="text-blue-400 text-sm font-medium">INPUT</div>
+                    <div className="bg-slate-700 p-3 rounded text-slate-300 text-sm">
+                      📄 lease_agreement.pdf<br />
+                      📊 rent_roll.xlsx<br />
+                      📋 offering_memo.pdf
+                    </div>
+                  </div>
+                  {/* robot */}
+                  <div className="flex items-center justify-center">
+                    <Bot className="w-8 h-8 text-purple-400" />
+                  </div>
+                  {/* output */}
+                  <div className="space-y-2">
+                    <div className="text-green-400 text-sm font-medium">OUTPUT</div>
+                    <div className="bg-slate-700 p-3 rounded text-slate-300 text-sm font-mono">
+      {`{
+        "noi": 485000,
+        "cap_rate": 6.2,
+        "avg_rent_psf": 28.50
+      }`}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* PROBLEM & VISION ------------------------------------------------ */}
       <section className="py-20 bg-black">
@@ -364,6 +466,62 @@ const Index = () => {
           </div>
         </div>
       )}
+      {/* ────────────────── FOOTER ────────────────── */}
+      <footer className="bg-slate-900 text-slate-300 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {/* left logo/intro */}
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <img
+                  src="/uploads/abodexoslogo.png"                // <-- path inside the public folder
+                  alt="Abodex logo"
+                  className="w-8 h-8 rounded-lg"         // same 8×8 size as before
+                />
+                <span className="text-xl font-bold text-white">Abodex</span>
+              </div>
+              <p className="text-slate-400 mb-4">Built by investors, for investors.</p>
+            </div>
+            {/* product links */}
+            <div>
+              <h4 className="font-semibold text-white mb-4">Product</h4>
+              <ul className="space-y-2 text-slate-400">
+                <li><a href="#features" className="hover:text-white">Features</a></li>
+                <li><a href="#pricing"  className="hover:text-white">Pricing</a></li>
+                <li><a href="#"         className="hover:text-white">API Docs</a></li>
+                <li><a href="#"         className="hover:text-white">Integrations</a></li>
+              </ul>
+            </div>
+
+            {/* company links */}
+            <div>
+              <h4 className="font-semibold text-white mb-4">Company</h4>
+              <ul className="space-y-2 text-slate-400">
+                <li><a href="#" className="hover:text-white">About</a></li>
+                <li><a href="#" className="hover:text-white">Careers</a></li>
+                <li><a href="#" className="hover:text-white">Contact</a></li>
+                <li><a href="#" className="hover:text-white">Privacy</a></li>
+              </ul>
+            </div>
+
+            {/* connect links */}
+            <div>
+              <h4 className="font-semibold text-white mb-4">Connect</h4>
+              <ul className="space-y-2 text-slate-400">
+                <li><a href="#" className="hover:text-white">Twitter</a></li>
+                <li><a href="#" className="hover:text-white">LinkedIn</a></li>
+                <li><a href="#" className="hover:text-white">Blog</a></li>
+                <li><a href="#" className="hover:text-white">Support</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-slate-700 mt-12 pt-8 text-center text-slate-400">
+            &copy; {new Date().getFullYear()} Abodex. All rights reserved.
+          </div>
+        </div>
+      </footer>
+
     </div>
   );
 };
