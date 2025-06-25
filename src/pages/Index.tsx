@@ -272,7 +272,7 @@ const Index = () => {
             </div>
             <div className="flex justify-center lg:justify-end">
               <img 
-                src="/uploads/5d3d4abb-6c8e-4e9f-8be7-6965985e1f1e.png" 
+                src="/upload/5d3d4abb-6c8e-4e9f-8be7-6965985e1f1e.png" 
                 alt="Abodex Logo" 
                 className="w-64 h-64 object-contain"
               />
