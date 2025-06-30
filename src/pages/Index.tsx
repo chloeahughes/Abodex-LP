@@ -164,10 +164,11 @@ const Index = () => {
           <Badge className="mb-6 bg-blue-50 text-blue-700">🚀 Now in Private Beta</Badge>
 
           <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-            Close every CRE deal
+            Close CRE deals
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               {" "}
-            </span>faster, in one platform.
+              faster, in one platform.
+            </span>
             <br />
           </h1>
 
