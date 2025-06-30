@@ -36,16 +36,11 @@ const Index = () => {
 
   /* rotating headline -------------------------------------------------- */
   const rotatingWords = [
-    "Data Entry",
-    "Lease Extraction",
-    "NOI Calculations",
-    "Rent Roll Parsing",
-    "Zoning Lookups",
-    "Cap Rate Input",
-    "OM Summarizing",
-    "Comps Formatting",
-    "Unit Mix Cleaning",
-    "Clause Tagging",
+    "Re-keying Data",
+    "Updating Stakeholders",
+    "Rebuilding Templates",
+    "Tracking Compliance",
+    "Sorting Documents",
   ];
   useEffect(() => {
     const id = setInterval(
@@ -103,12 +98,9 @@ const Index = () => {
 
   /* static data (features, tiers, comparison) -------------------------- */
   const features = [
-    { icon: Upload, title: "Upload Any Document", description: "Leases, OMs, rent rolls – drag & drop or batch upload" },
-    { icon: Bot, title: "AI Extraction", description: "Parse key fields like NOI, lease expirations, cap rates automatically" },
-    { icon: BarChart3, title: "Dashboard Insights", description: "Visual analytics with full audit trail for every data point" },
-    { icon: Link2, title: "Export Anywhere", description: "Excel, CRM, Dealpath – seamless integrations" },
-    { icon: MessageSquare, title: "LLM Q&A Interface", description: "Ask questions like 'What's the average rent/sqft?'" },
-    { icon: Code, title: "Developer API", description: "JSON/CSV export with comprehensive documentation" },
+    { icon: Upload, title: "Centralized Operating System", description: "All stakeholders, documents, and tasks for every deal live in a single, searchable dashboard." },
+    { icon: Bot, title: "Automated Workflows", description: "Prebuilt templates trigger next steps-- escalations, disclosures, signatures—with up-to-date compliance." },
+    { icon: BarChart3, title: "AI Document Intelligence", description: "Leases, PSAs, and reports are parsed and structured in seconds, giving you clean, query-ready data." },
   ];
   const pricingTiers = [
     { name: "Free", price: "$0", period: "/mo", features: ["5 documents", "Basic export", "Email support"], popular: false, cta: "Get Started" },
@@ -117,10 +109,10 @@ const Index = () => {
     { name: "Enterprise", price: "Custom", period: "", features: ["Unlimited documents", "SOC-2 compliance", "Dedicated onboarding", "SSO integration"], popular: false, cta: "Contact Sales" },
   ];
   const comparisonData = [
-    { feature: "Built for real estate", abodex: true, competitors: false, manual: false },
-    { feature: "Structured deal data + UI/API", abodex: true, competitors: "partial", manual: false },
-    { feature: "Easy for small teams", abodex: true, competitors: false, manual: false },
-    { feature: "Clause-level audit trail", abodex: true, competitors: "limited", manual: true },
+    { feature: "Real-time collaboration across stakeholders", abodex: true, competitors: false, manual: false },
+    { feature: "Structured data from unstructured docs", abodex: true, competitors: "partial", manual: false },
+    { feature: "Lightweight & scalable for teams", abodex: true, competitors: false, manual: false },
+    { feature: "Automated task workflows", abodex: true, competitors: "limited", manual: true },
   ];
   const renderCheck = (v: boolean | string) =>
     v === true ? (
@@ -172,16 +164,15 @@ const Index = () => {
           <Badge className="mb-6 bg-blue-50 text-blue-700">🚀 Now in Private Beta</Badge>
 
           <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-            From PDFs to
+            Close every CRE deal
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              {" "}Property Intelligence
-            </span>
-            <br />— Instantly
+              {" "}
+            </span>faster, in one platform.
+            <br />
           </h1>
 
           <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Abodex turns leases, OMs, and rent rolls into clean, structured data.
-            Automate underwriting, analysis, and reporting with one AI-powered tool.
+            AbodexOS is the centralized operating system that turns fragmented real-estate transactions into automated, error-free workflows—so you can move from LOI to closing faster, without the email chaos.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -247,15 +238,13 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Stop Wasting Hours on{" "}
+              Stop Wasting Hours on Manually{" "}
               <span className="text-purple-500">
                 {rotatingWords[currentWordIndex]}
               </span>
             </h2>
             <p className="text-xl text-slate-300 leading-relaxed">
-              Investors and underwriters waste hours re-keying PDFs. Abodex is
-              your AI copilot for extracting insights, automating due diligence,
-              and connecting your tools—without the busywork.
+              Abodex automates the busywork so you close deals up to 40 % faster.
             </p>
           </div>
           <div className="flex justify-center lg:justify-end">
@@ -275,7 +264,7 @@ const Index = () => {
             Everything You Need in One Platform
           </h2>
           <p className="text-xl text-slate-600 mb-16">
-            From document upload to actionable insights
+            From document sorting to dashboard insights
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((f, i) => (
@@ -480,7 +469,7 @@ const Index = () => {
                 />
                 <span className="text-xl font-bold text-white">Abodex</span>
               </div>
-              <p className="text-slate-400 mb-4">Built by investors, for investors.</p>
+              <p className="text-slate-400 mb-4">Centralized Operating System for your CRE deals.</p>
             </div>
             {/* product links */}
             <div>
