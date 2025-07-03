@@ -98,21 +98,21 @@ const Index = () => {
 
   /* static data (features, tiers, comparison) -------------------------- */
   const features = [
-    { icon: Upload, title: "Centralized Operating System", description: "All stakeholders, documents, and tasks for every deal live in a single, searchable dashboard." },
-    { icon: Bot, title: "Automated Workflows", description: "Prebuilt templates trigger next steps-- escalations, disclosures, signatures—with up-to-date compliance." },
-    { icon: BarChart3, title: "AI Document Intelligence", description: "Leases, PSAs, and reports are parsed and structured in seconds, giving you clean, query-ready data." },
+    { icon: Upload, title: "Valuation Copilot", description: "Ingests OM/rent roll → outputs DCF model + summary." },
+    { icon: Bot, title: "Tenant AI Agent", description: "Answers lease questions, books tours, logs CRM activity." },
+    { icon: BarChart3, title: "Compliance Tracker", description: "Auto-updates checklists & clauses based on local laws." },
   ];
   const pricingTiers = [
-    { name: "Free", price: "$0", period: "/mo", features: ["5 documents", "Basic export", "Email support"], popular: false, cta: "Get Started" },
-    { name: "Pro", price: "$79", period: "/mo", features: ["50 documents", "Dashboard access", "API access", "Priority support"], popular: true, cta: "Start Free Trial" },
-    { name: "Team", price: "$299", period: "/mo", features: ["500 documents", "Multi-user access", "All integrations", "Custom workflows"], popular: false, cta: "Contact Sales" },
-    { name: "Enterprise", price: "Custom", period: "", features: ["Unlimited documents", "SOC-2 compliance", "Dedicated onboarding", "SSO integration"], popular: false, cta: "Contact Sales" },
+    { name: "Growth", price: "$4k", period: "/yr", features: [""], popular: false, cta: "Contact Sales" },
+    { name: "Core-mid", price: "$12k", period: "/yr", features: [""], popular: true, cta: "Contact Sales" },
+    { name: "Upper-mid", price: "$30k", period: "/yr", features: [""], popular: false, cta: "Contact Sales" },
+    { name: "Enterprise", price: "Custom", period: "", features: [""], popular: false, cta: "Contact Sales" },
   ];
   const comparisonData = [
     { feature: "Real-time collaboration across stakeholders", abodex: true, competitors: false, manual: false },
-    { feature: "Structured data from unstructured docs", abodex: true, competitors: "partial", manual: false },
-    { feature: "Lightweight & scalable for teams", abodex: true, competitors: false, manual: false },
-    { feature: "Automated task workflows", abodex: true, competitors: "limited", manual: true },
+    { feature: "Private vector store per client", abodex: true, competitors: "partial", manual: false },
+    { feature: "Modular verticals", abodex: true, competitors: false, manual: false },
+    { feature: "Internal integration", abodex: true, competitors: "limited", manual: true },
   ];
   const renderCheck = (v: boolean | string) =>
     v === true ? (
@@ -164,16 +164,16 @@ const Index = () => {
           <Badge className="mb-6 bg-blue-50 text-blue-700">🚀 Now in Private Beta</Badge>
 
           <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-            Close CRE deals
+            The Operating System for 
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               {" "}
-              faster, in one platform.
+              Data-Driven CRE Firms
             </span>
             <br />
           </h1>
 
           <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            AbodexOS is the centralized operating system that turns fragmented real-estate transactions into automated, error-free workflows—so you can move from LOI to closing faster, without the email chaos.
+            Abodex is a private, secure AI platform that plugs into any CRE firm’s internal data — underwriting models, offering memos, rent rolls, leases, emails — and turns it into a set of AI copilots.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -265,7 +265,7 @@ const Index = () => {
             Everything You Need in One Platform
           </h2>
           <p className="text-xl text-slate-600 mb-16">
-            From document sorting to dashboard insights
+            An externalized, modular GPT — with per-client vector storage, secure APIs, and smart modules.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((f, i) => (
@@ -428,7 +428,7 @@ const Index = () => {
             🚀 Be First to Use AbodexOS
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Join our private beta and get 50 documents processed free
+            Join our private beta and get 50 prompts free
           </p>
           <Button
             size="lg"
