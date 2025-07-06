@@ -98,9 +98,9 @@ const Index = () => {
 
   /* static data (features, tiers, comparison) -------------------------- */
   const features = [
-    { icon: Upload, title: "Valuation Copilot", description: "Ingests OM/rent roll → outputs DCF model + summary." },
-    { icon: Bot, title: "Tenant AI Agent", description: "Answers lease questions, books tours, logs CRM activity." },
-    { icon: BarChart3, title: "Compliance Tracker", description: "Auto-updates checklists & clauses based on local laws." },
+    { icon: Upload, title: "Compliance Agent", description: "Flags missing clauses and checks documents for regulatory and legal risks." },
+    { icon: Bot, title: "GPT Agent", description: "Answers deal, document, and compliance questions using natural language interface." },
+    { icon: BarChart3, title: "AI Analyst", description: "Extracts key financial data and terms from leases and LOIs." },
   ];
   const pricingTiers = [
     { name: "Growth", price: "$4k", period: "/yr", features: [""], popular: false, cta: "Contact Sales" },
