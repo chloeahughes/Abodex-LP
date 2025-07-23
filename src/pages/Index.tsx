@@ -169,17 +169,19 @@ const Index = () => {
 
       {/* HERO */}
       {/* ────────────────── HERO ────────────────── */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Skyline background image */}
+        <img
+          src="/uploads/skyline.png"
+          alt="Skyline"
+          className="absolute top-0 left-1/2 w-[1200px] max-w-none -translate-x-1/2 opacity-10 pointer-events-none select-none"
+          style={{ zIndex: 0 }}
+        />
+        <div className="max-w-7xl mx-auto text-center relative z-10">
           <Badge className="mb-6 bg-blue-50 text-blue-700">🚀 Now in Private Beta</Badge>
 
           <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-            The Operating System for 
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              {" "}
-              Data-Driven CRE Firms
-            </span>
-            <br />
+            Close CRE Deals on One Platform
           </h1>
 
           <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
