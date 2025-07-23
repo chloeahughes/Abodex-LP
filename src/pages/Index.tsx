@@ -615,45 +615,65 @@ const Index = () => {
               Enter your email or phone number to receive a magic link. You'll be able to track your created deals.
             </DialogDescription>
           </DialogHeader>
-          {magicLinkSent ? (
-            <div className="text-green-600 text-center py-4">Magic link sent! Check your inbox or SMS to continue.</div>
-          ) : (
-            <form
-              onSubmit={async (e) => {
-                e.preventDefault();
-                setMagicLinkLoading(true);
-                setMagicLinkError("");
-                try {
-                  let result;
-                  if (magicLinkValue.includes("@")) {
-                    result = await supabase.auth.signInWithOtp({ email: magicLinkValue });
-                  } else {
-                    result = await supabase.auth.signInWithOtp({ phone: magicLinkValue });
-                  }
-                  if (result.error) throw result.error;
-                  setMagicLinkSent(true);
-                } catch (err) {
-                  setMagicLinkError(err.message || "Failed to send magic link");
-                } finally {
-                  setMagicLinkLoading(false);
-                }
-              }}
-              className="space-y-4"
-            >
-              <Input
-                type="text"
-                placeholder="Email or phone number"
-                value={magicLinkValue}
-                onChange={e => setMagicLinkValue(e.target.value)}
-                required
-                disabled={magicLinkLoading}
-              />
-              {magicLinkError && <div className="text-red-600 text-sm">{magicLinkError}</div>}
-              <Button type="submit" className="w-full bg-black text-white" disabled={magicLinkLoading}>
-                {magicLinkLoading ? "Sending..." : "Send Magic Link"}
+          <div className="flex flex-col gap-6">
+            {/* Magic Link Section */}
+            <div>
+              <div className="font-semibold mb-2">Get a Magic Link</div>
+              {magicLinkSent ? (
+                <div className="text-green-600 text-center py-4">Magic link sent! Check your inbox or SMS to continue.</div>
+              ) : (
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    setMagicLinkLoading(true);
+                    setMagicLinkError("");
+                    try {
+                      let result;
+                      if (magicLinkValue.includes("@")) {
+                        result = await supabase.auth.signInWithOtp({ email: magicLinkValue });
+                      } else {
+                        result = await supabase.auth.signInWithOtp({ phone: magicLinkValue });
+                      }
+                      if (result.error) throw result.error;
+                      setMagicLinkSent(true);
+                    } catch (err) {
+                      setMagicLinkError(err.message || "Failed to send magic link");
+                    } finally {
+                      setMagicLinkLoading(false);
+                    }
+                  }}
+                  className="space-y-4"
+                >
+                  <Input
+                    type="text"
+                    placeholder="Email or phone number"
+                    value={magicLinkValue}
+                    onChange={e => setMagicLinkValue(e.target.value)}
+                    required
+                    disabled={magicLinkLoading}
+                  />
+                  {magicLinkError && <div className="text-red-600 text-sm">{magicLinkError}</div>}
+                  <Button type="submit" className="w-full bg-black text-white" disabled={magicLinkLoading}>
+                    {magicLinkLoading ? "Sending..." : "Send Magic Link"}
+                  </Button>
+                </form>
+              )}
+            </div>
+            {/* See Demo Section */}
+            <div className="border-t pt-4">
+              <div className="font-semibold mb-2 text-center">Or</div>
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={() => {
+                  setShowMagicLinkModal(false);
+                  navigate('/deals');
+                }}
+              >
+                See Demo
               </Button>
-            </form>
-          )}
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
