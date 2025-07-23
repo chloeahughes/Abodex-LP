@@ -24,6 +24,8 @@ import {
 import { toast } from "@/hooks/use-toast";
 import { addProfile, listProfiles } from "@/api/profileService";
 import { useNavigate } from "react-router-dom";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { supabase } from "@/lib/supabaseClient";
 
 /* --- component ---------------------------------------------------------- */
 const Index = () => {
@@ -34,6 +36,11 @@ const Index = () => {
   const [showWaitlistModal, setShowWaitlistModal] = useState(false);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [profiles, setProfiles] = useState<any[]>([]); // optional UI later
+  const [showMagicLinkModal, setShowMagicLinkModal] = useState(false);
+  const [magicLinkValue, setMagicLinkValue] = useState("");
+  const [magicLinkSent, setMagicLinkSent] = useState(false);
+  const [magicLinkLoading, setMagicLinkLoading] = useState(false);
+  const [magicLinkError, setMagicLinkError] = useState("");
 
   const navigate = useNavigate();
 
@@ -191,7 +198,7 @@ const Index = () => {
             <Button
               size="lg"
               className="bg-black text-white hover:bg-neutral-800 text-lg px-8 py-4"
-              onClick={() => navigate('/deals')}
+              onClick={() => setShowMagicLinkModal(true)}
             >
               Try Deal Room
             </Button>
@@ -600,6 +607,55 @@ const Index = () => {
           </div>
         </div>
       )}
+      <Dialog open={showMagicLinkModal} onOpenChange={setShowMagicLinkModal}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Access Deal Room Demo</DialogTitle>
+            <DialogDescription>
+              Enter your email or phone number to receive a magic link. You'll be able to track your created deals.
+            </DialogDescription>
+          </DialogHeader>
+          {magicLinkSent ? (
+            <div className="text-green-600 text-center py-4">Magic link sent! Check your inbox or SMS to continue.</div>
+          ) : (
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                setMagicLinkLoading(true);
+                setMagicLinkError("");
+                try {
+                  let result;
+                  if (magicLinkValue.includes("@")) {
+                    result = await supabase.auth.signInWithOtp({ email: magicLinkValue });
+                  } else {
+                    result = await supabase.auth.signInWithOtp({ phone: magicLinkValue });
+                  }
+                  if (result.error) throw result.error;
+                  setMagicLinkSent(true);
+                } catch (err) {
+                  setMagicLinkError(err.message || "Failed to send magic link");
+                } finally {
+                  setMagicLinkLoading(false);
+                }
+              }}
+              className="space-y-4"
+            >
+              <Input
+                type="text"
+                placeholder="Email or phone number"
+                value={magicLinkValue}
+                onChange={e => setMagicLinkValue(e.target.value)}
+                required
+                disabled={magicLinkLoading}
+              />
+              {magicLinkError && <div className="text-red-600 text-sm">{magicLinkError}</div>}
+              <Button type="submit" className="w-full bg-black text-white" disabled={magicLinkLoading}>
+                {magicLinkLoading ? "Sending..." : "Send Magic Link"}
+              </Button>
+            </form>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
