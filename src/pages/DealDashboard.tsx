@@ -102,7 +102,14 @@ export default function DealDashboard() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredDeals.map((deal) => (
-            <Card key={deal.id} className="relative">
+            <Card
+              key={deal.id}
+              className="relative cursor-pointer hover:shadow-xl transition-shadow"
+              onClick={() => navigate(`/deals/${deal.id}`)}
+              tabIndex={0}
+              role="button"
+              aria-label={`Open deal room for ${deal.propertyName}`}
+            >
               <CardContent className="pt-6 pb-4">
                 <div className="flex items-center justify-between mb-2">
                   <CardTitle>{deal.propertyName}</CardTitle>

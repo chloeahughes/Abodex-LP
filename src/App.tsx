@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import DealDashboard from "./pages/DealDashboard";
 import DealCreate from "./pages/DealCreate";
+import DealDetail from "./pages/DealDetail";
+import AuthCallback from "./pages/AuthCallback";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +22,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/deals" element={<DealDashboard />} />
           <Route path="/deals/new" element={<DealCreate />} />
+          <Route path="/deals/:id" element={<DealDetail />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
