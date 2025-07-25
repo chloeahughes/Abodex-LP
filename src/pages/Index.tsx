@@ -199,10 +199,11 @@ const Index = () => {
             </Button>
             <Button
               size="lg"
-              className="bg-black text-white hover:bg-neutral-800 text-lg px-8 py-4"
-              onClick={() => setShowMagicLinkModal(true)}
+              variant="outline"
+              className="text-lg px-8 py-4"
+              asChild
             >
-              Try Deal Room
+              <a href="/dashboard">Try AbodexOS</a>
             </Button>
           </div>
 

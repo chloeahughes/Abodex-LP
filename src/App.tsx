@@ -9,6 +9,7 @@ import DealDashboard from "./pages/DealDashboard";
 import DealCreate from "./pages/DealCreate";
 import DealDetail from "./pages/DealDetail";
 import AuthCallback from "./pages/AuthCallback";
+import Dashboard from "./pages/Dashboard";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/deals/new" element={<DealCreate />} />
           <Route path="/deals/:id" element={<DealDetail />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
