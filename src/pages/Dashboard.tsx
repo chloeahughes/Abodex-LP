@@ -1,8 +1,19 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
 import { 
   LayoutDashboard, 
   Building2, 
@@ -17,20 +28,28 @@ import {
   Filter,
   MoreHorizontal,
   Download,
-  ChevronDown
+  ChevronDown,
+  DollarSign,
+  Wrench,
+  BarChart3,
+  Home,
+  ClipboardList,
+  Upload,
+  MapPin,
+  Phone,
+  Mail,
+  Edit,
+  Trash2,
+  Eye,
+  CalendarIcon
 } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [propertyView, setPropertyView] = useState("table"); // table or kanban
+  const [taskView, setTaskView] = useState("list");
+  const [calendarView, setCalendarView] = useState("monthly");
 
   const navigationItems = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -39,47 +58,63 @@ const Dashboard = () => {
     { id: "calendar", label: "Calendar", icon: Calendar },
     { id: "team", label: "Team Activity", icon: Users },
     { id: "files", label: "Files", icon: FileText },
+    { id: "leases", label: "Lease Management", icon: Home },
+    { id: "rentroll", label: "Rent Roll", icon: DollarSign },
+    { id: "maintenance", label: "Maintenance", icon: Wrench },
+    { id: "reports", label: "Reports", icon: BarChart3 },
     { id: "settings", label: "Settings", icon: Settings },
   ];
 
-  // Demo data
+  // Enhanced Demo Data
   const demoStats = {
-    activeDeals: 12,
-    openTasks: 24,
-    deadlinesThisWeek: 8,
-    recentlyUpdated: 5
+    activeProperties: 15,
+    totalRentThisMonth: 248750,
+    openTasks: 32,
+    maintenanceTickets: 8
   };
 
   const demoProperties = [
     {
       id: 1,
       name: "123 Main St",
-      address: "123 Main Street, San Francisco, CA",
-      stage: "Due Diligence",
-      leadBroker: "Alex Chen",
+      address: "123 Main Street, San Francisco, CA 94102",
+      stage: "Owned",
+      leadContact: "Alex Chen",
+      occupancy: 95,
+      rentCollectedMTD: 28500,
       tasks: 8,
       attachments: 12,
-      lastUpdated: "2 hours ago"
+      lastUpdated: "2 hours ago",
+      type: "Multifamily",
+      units: 8
     },
     {
       id: 2,
       name: "456 Market Ave",
-      address: "456 Market Avenue, Oakland, CA",
-      stage: "Offer",
-      leadBroker: "Jamie Wilson",
+      address: "456 Market Avenue, Oakland, CA 94607",
+      stage: "Due Diligence",
+      leadContact: "Jamie Wilson",
+      occupancy: 87,
+      rentCollectedMTD: 45200,
       tasks: 5,
       attachments: 7,
-      lastUpdated: "1 day ago"
+      lastUpdated: "1 day ago",
+      type: "Office",
+      units: 0
     },
     {
       id: 3,
       name: "789 Broadway",
-      address: "789 Broadway, New York, NY",
+      address: "789 Broadway, New York, NY 10003",
       stage: "Escrow",
-      leadBroker: "Alex Chen",
+      leadContact: "Ryan Torres",
+      occupancy: 100,
+      rentCollectedMTD: 12800,
       tasks: 12,
       attachments: 18,
-      lastUpdated: "3 hours ago"
+      lastUpdated: "3 hours ago",
+      type: "Retail",
+      units: 1
     }
   ];
 
@@ -91,7 +126,9 @@ const Dashboard = () => {
       dueDate: "Today",
       property: "123 Main St",
       status: "In Progress",
-      section: "Today"
+      section: "Today",
+      description: "Complete review of third-party appraisal",
+      platformTag: "Email"
     },
     {
       id: 2,
@@ -100,16 +137,20 @@ const Dashboard = () => {
       dueDate: "Tomorrow",
       property: "456 Market Ave",
       status: "Not Started",
-      section: "Upcoming"
+      section: "Upcoming",
+      description: "Draft and send letter of intent",
+      platformTag: "DocuSign"
     },
     {
       id: 3,
       name: "Upload Rent Roll",
-      assignee: "Alex Chen",
+      assignee: "Ryan Torres",
       dueDate: "Yesterday",
       property: "789 Broadway",
       status: "Overdue",
-      section: "Overdue"
+      section: "Overdue",
+      description: "Upload Q4 rent roll data",
+      platformTag: "Excel"
     },
     {
       id: 4,
@@ -118,7 +159,9 @@ const Dashboard = () => {
       dueDate: "Next Week",
       property: "123 Main St",
       status: "Not Started",
-      section: "Upcoming"
+      section: "Upcoming",
+      description: "Coordinate buyer walkthrough",
+      platformTag: "Email"
     },
     {
       id: 5,
@@ -127,42 +170,176 @@ const Dashboard = () => {
       dueDate: "Completed",
       property: "456 Market Ave",
       status: "Complete",
-      section: "Completed"
+      section: "Completed",
+      description: "Phase I environmental assessment review",
+      platformTag: "Email"
+    }
+  ];
+
+  const demoLeases = [
+    {
+      id: 1,
+      tenantName: "Tech Startup Inc.",
+      property: "456 Market Ave",
+      unit: "Suite 200",
+      startDate: "2024-01-01",
+      endDate: "2026-12-31",
+      monthlyRent: 4520,
+      paymentStatus: "Paid"
     },
     {
-      id: 6,
-      name: "Submit Loan Application",
-      assignee: "Jamie Wilson",
-      dueDate: "This Week",
+      id: 2,
+      tenantName: "Coffee Corner LLC",
       property: "789 Broadway",
+      unit: "Ground Floor",
+      startDate: "2023-06-01",
+      endDate: "2028-05-31",
+      monthlyRent: 3200,
+      paymentStatus: "Late"
+    },
+    {
+      id: 3,
+      tenantName: "Johnson Family",
+      property: "123 Main St",
+      unit: "Unit 3A",
+      startDate: "2023-09-01",
+      endDate: "2024-08-31",
+      monthlyRent: 2850,
+      paymentStatus: "Paid"
+    }
+  ];
+
+  const demoRentRoll = [
+    {
+      property: "123 Main St",
+      unit: "Unit 1A",
+      tenant: "Smith Family",
+      rentDue: 2400,
+      rentPaid: 2400,
+      status: "Paid"
+    },
+    {
+      property: "123 Main St",
+      unit: "Unit 2B",
+      tenant: "Davis LLC",
+      rentDue: 2600,
+      rentPaid: 2600,
+      status: "Paid"
+    },
+    {
+      property: "456 Market Ave",
+      unit: "Suite 200",
+      tenant: "Tech Startup Inc.",
+      rentDue: 4520,
+      rentPaid: 0,
+      status: "Late"
+    },
+    {
+      property: "789 Broadway",
+      unit: "Ground Floor",
+      tenant: "Coffee Corner LLC",
+      rentDue: 3200,
+      rentPaid: 1600,
+      status: "Partial"
+    }
+  ];
+
+  const demoMaintenance = [
+    {
+      id: 1,
+      property: "123 Main St",
+      unit: "Unit 2A",
+      issueType: "HVAC",
+      priority: "High",
+      status: "Open",
+      description: "Air conditioning not working",
+      assignee: "Mike Johnson",
+      estimatedCost: 450,
+      scheduledDate: "2024-01-15"
+    },
+    {
+      id: 2,
+      property: "456 Market Ave",
+      unit: "Common Area",
+      issueType: "Plumbing",
+      priority: "Medium",
       status: "In Progress",
-      section: "Upcoming"
+      description: "Leaky faucet in lobby restroom",
+      assignee: "Sarah Wilson",
+      estimatedCost: 125,
+      scheduledDate: "2024-01-12"
+    },
+    {
+      id: 3,
+      property: "789 Broadway",
+      unit: "Ground Floor",
+      issueType: "Electrical",
+      priority: "Low",
+      status: "Resolved",
+      description: "Replace burnt out LED fixtures",
+      assignee: "Mike Johnson",
+      estimatedCost: 85,
+      scheduledDate: "2024-01-10"
     }
   ];
 
   const demoActivity = [
     { user: "Alex Chen", action: "updated task", item: "Review Appraisal Report", time: "10 minutes ago" },
     { user: "Jamie Wilson", action: "added property", item: "789 Broadway", time: "2 hours ago" },
-    { user: "Alex Chen", action: "completed task", item: "Review Environmental Report", time: "4 hours ago" },
-    { user: "Jamie Wilson", action: "uploaded file", item: "LOI_456Market.pdf", time: "1 day ago" },
-    { user: "Alex Chen", action: "created task", item: "Schedule Property Tour", time: "1 day ago" }
+    { user: "Ryan Torres", action: "completed task", item: "Review Environmental Report", time: "4 hours ago" },
+    { user: "Mike Johnson", action: "resolved maintenance ticket", item: "HVAC Repair - Unit 2A", time: "6 hours ago" },
+    { user: "Sarah Wilson", action: "uploaded file", item: "LOI_456Market.pdf", time: "1 day ago" },
+    { user: "Alex Chen", action: "created lease", item: "Coffee Corner LLC - 789 Broadway", time: "2 days ago" }
   ];
 
   const demoFiles = [
     { name: "LOI_123Main.pdf", property: "123 Main St", type: "PDF", uploadedBy: "Alex Chen", date: "Today" },
     { name: "RentRoll_456Market.xlsx", property: "456 Market Ave", type: "Excel", uploadedBy: "Jamie Wilson", date: "Yesterday" },
-    { name: "Appraisal_789Broadway.pdf", property: "789 Broadway", type: "PDF", uploadedBy: "Alex Chen", date: "2 days ago" },
-    { name: "SitePlan_123Main.png", property: "123 Main St", type: "Image", uploadedBy: "Jamie Wilson", date: "3 days ago" }
+    { name: "Appraisal_789Broadway.pdf", property: "789 Broadway", type: "PDF", uploadedBy: "Ryan Torres", date: "2 days ago" },
+    { name: "SitePlan_123Main.png", property: "123 Main St", type: "Image", uploadedBy: "Sarah Wilson", date: "3 days ago" },
+    { name: "Lease_Agreement_TechStartup.pdf", property: "456 Market Ave", type: "PDF", uploadedBy: "Alex Chen", date: "1 week ago" }
+  ];
+
+  const reports = [
+    { name: "Property Performance", description: "Monthly performance metrics by property" },
+    { name: "Rent Collection Summary", description: "Rent collection status and trends" },
+    { name: "Task Completion by Team", description: "Team productivity and task completion rates" },
+    { name: "Maintenance Cost Summary", description: "Maintenance expenses by property and category" },
+    { name: "Occupancy Rate Trends", description: "Historical occupancy data and projections" }
   ];
 
   const renderDashboard = () => (
     <div className="space-y-6">
-      {/* Stats Cards */}
+      {/* Quick Create CTAs */}
+      <div className="flex gap-3 mb-6">
+        <Button onClick={() => setActiveTab("properties")}>
+          <Plus className="w-4 h-4 mr-2" />
+          New Property
+        </Button>
+        <Button variant="outline" onClick={() => setActiveTab("tasks")}>
+          <Plus className="w-4 h-4 mr-2" />
+          New Task
+        </Button>
+        <Button variant="outline" onClick={() => setActiveTab("leases")}>
+          <Plus className="w-4 h-4 mr-2" />
+          New Lease
+        </Button>
+      </div>
+
+      {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Active Deals</CardDescription>
-            <CardTitle className="text-3xl font-bold text-blue-600">{demoStats.activeDeals}</CardTitle>
+            <CardDescription>Active Properties</CardDescription>
+            <CardTitle className="text-3xl font-bold text-blue-600">{demoStats.activeProperties}</CardTitle>
+          </CardHeader>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardDescription>Total Rent This Month</CardDescription>
+            <CardTitle className="text-3xl font-bold text-green-600">
+              ${demoStats.totalRentThisMonth.toLocaleString()}
+            </CardTitle>
           </CardHeader>
         </Card>
         <Card>
@@ -173,14 +350,8 @@ const Dashboard = () => {
         </Card>
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Deadlines This Week</CardDescription>
-            <CardTitle className="text-3xl font-bold text-red-600">{demoStats.deadlinesThisWeek}</CardTitle>
-          </CardHeader>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Recently Updated</CardDescription>
-            <CardTitle className="text-3xl font-bold text-green-600">{demoStats.recentlyUpdated}</CardTitle>
+            <CardDescription>Maintenance Tickets</CardDescription>
+            <CardTitle className="text-3xl font-bold text-red-600">{demoStats.maintenanceTickets}</CardTitle>
           </CardHeader>
         </Card>
       </div>
@@ -192,7 +363,7 @@ const Dashboard = () => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {demoActivity.map((activity, index) => (
+            {demoActivity.slice(0, 8).map((activity, index) => (
               <div key={index} className="flex items-center space-x-3">
                 <Avatar className="h-8 w-8">
                   <AvatarFallback className="text-xs">{activity.user.split(' ').map(n => n[0]).join('')}</AvatarFallback>
@@ -200,7 +371,7 @@ const Dashboard = () => {
                 <div className="flex-1">
                   <p className="text-sm">
                     <span className="font-medium">{activity.user}</span> {activity.action}{" "}
-                    <span className="font-medium">"{activity.item}"</span>
+                    <span className="font-medium text-blue-600">"{activity.item}"</span>
                   </p>
                   <p className="text-xs text-gray-500">{activity.time}</p>
                 </div>
@@ -216,52 +387,61 @@ const Dashboard = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Properties</h2>
-        <Button>
-          <Plus className="w-4 h-4 mr-2" />
-          Add Property
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm" onClick={() => setPropertyView(propertyView === "table" ? "kanban" : "table")}>
+            {propertyView === "table" ? "Kanban View" : "Table View"}
+          </Button>
+          <Button>
+            <Plus className="w-4 h-4 mr-2" />
+            Add Property
+          </Button>
+        </div>
       </div>
       
       <Card>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="border-b">
-                <tr className="text-left">
-                  <th className="p-4 font-medium">Property Name</th>
-                  <th className="p-4 font-medium">Address</th>
-                  <th className="p-4 font-medium">Stage</th>
-                  <th className="p-4 font-medium">Lead Broker</th>
-                  <th className="p-4 font-medium">Tasks</th>
-                  <th className="p-4 font-medium">Files</th>
-                  <th className="p-4 font-medium">Last Updated</th>
-                </tr>
-              </thead>
-              <tbody>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Property Name</TableHead>
+                  <TableHead>Address</TableHead>
+                  <TableHead>Stage</TableHead>
+                  <TableHead>Lead Contact</TableHead>
+                  <TableHead>Occupancy %</TableHead>
+                  <TableHead>Rent MTD</TableHead>
+                  <TableHead>Tasks</TableHead>
+                  <TableHead>Files</TableHead>
+                  <TableHead>Last Updated</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
                 {demoProperties.map((property) => (
-                  <tr key={property.id} className="border-b hover:bg-gray-50">
-                    <td className="p-4 font-medium">{property.name}</td>
-                    <td className="p-4 text-sm text-gray-600">{property.address}</td>
-                    <td className="p-4">
+                  <TableRow key={property.id} className="hover:bg-gray-50">
+                    <TableCell className="font-medium">{property.name}</TableCell>
+                    <TableCell className="text-sm text-gray-600">{property.address}</TableCell>
+                    <TableCell>
                       <Badge 
-                        variant={property.stage === "Due Diligence" ? "default" : 
-                               property.stage === "Offer" ? "secondary" : "outline"}
+                        variant={property.stage === "Owned" ? "default" : 
+                               property.stage === "Due Diligence" ? "secondary" : "outline"}
                       >
                         {property.stage}
                       </Badge>
-                    </td>
-                    <td className="p-4">{property.leadBroker}</td>
-                    <td className="p-4">
+                    </TableCell>
+                    <TableCell>{property.leadContact}</TableCell>
+                    <TableCell>{property.occupancy}%</TableCell>
+                    <TableCell>${property.rentCollectedMTD.toLocaleString()}</TableCell>
+                    <TableCell>
                       <Badge variant="outline">{property.tasks}</Badge>
-                    </td>
-                    <td className="p-4">
+                    </TableCell>
+                    <TableCell>
                       <Badge variant="outline">{property.attachments}</Badge>
-                    </td>
-                    <td className="p-4 text-sm text-gray-600">{property.lastUpdated}</td>
-                  </tr>
+                    </TableCell>
+                    <TableCell className="text-sm text-gray-600">{property.lastUpdated}</TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
           </div>
         </CardContent>
       </Card>
@@ -272,10 +452,16 @@ const Dashboard = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Tasks</h2>
-        <Button>
-          <Plus className="w-4 h-4 mr-2" />
-          Add Task
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm">
+            <Filter className="w-4 h-4 mr-2" />
+            Filters
+          </Button>
+          <Button>
+            <Plus className="w-4 h-4 mr-2" />
+            Add Task
+          </Button>
+        </div>
       </div>
 
       {/* Task Sections */}
@@ -289,23 +475,29 @@ const Dashboard = () => {
             <CardContent>
               <div className="space-y-3">
                 {sectionTasks.map((task) => (
-                  <div key={task.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50">
+                  <div key={task.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
                     <div className="flex items-center space-x-3">
-                      <input type="checkbox" className="rounded" checked={task.status === "Complete"} readOnly />
-                      <div>
+                      <Checkbox checked={task.status === "Complete"} />
+                      <div className="flex-1">
                         <p className="font-medium">{task.name}</p>
                         <p className="text-sm text-gray-600">
                           {task.assignee} • {task.property} • {task.dueDate}
                         </p>
+                        {task.description && (
+                          <p className="text-xs text-gray-500 mt-1">{task.description}</p>
+                        )}
                       </div>
                     </div>
-                    <Badge 
-                      variant={task.status === "Complete" ? "default" : 
-                             task.status === "In Progress" ? "secondary" : 
-                             task.status === "Overdue" ? "destructive" : "outline"}
-                    >
-                      {task.status}
-                    </Badge>
+                    <div className="flex items-center space-x-2">
+                      <Badge variant="outline" className="text-xs">{task.platformTag}</Badge>
+                      <Badge 
+                        variant={task.status === "Complete" ? "default" : 
+                               task.status === "In Progress" ? "secondary" : 
+                               task.status === "Overdue" ? "destructive" : "outline"}
+                      >
+                        {task.status}
+                      </Badge>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -320,15 +512,21 @@ const Dashboard = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Calendar</h2>
-        <Badge variant="outline">Sync with Google Calendar (Coming Soon)</Badge>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm" onClick={() => setCalendarView(calendarView === "monthly" ? "weekly" : "monthly")}>
+            {calendarView === "monthly" ? "Weekly View" : "Monthly View"}
+          </Button>
+          <Badge variant="outline">Sync with Google Calendar (Coming Soon)</Badge>
+        </div>
       </div>
       
       <Card>
         <CardContent className="p-6">
           <div className="text-center text-gray-500 py-12">
             <Calendar className="w-12 h-12 mx-auto mb-4 opacity-50" />
-            <p>Calendar view coming soon</p>
-            <p className="text-sm">Tasks with due dates will appear here</p>
+            <p className="text-lg font-medium">Calendar view coming soon</p>
+            <p className="text-sm">Tasks with due dates and lease milestones will appear here</p>
+            <p className="text-xs mt-2">Color-coded by status and event type</p>
           </div>
         </CardContent>
       </Card>
@@ -337,7 +535,19 @@ const Dashboard = () => {
 
   const renderTeamActivity = () => (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold">Team Activity</h2>
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Team Activity</h2>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm">
+            <Filter className="w-4 h-4 mr-2" />
+            Filter by User
+          </Button>
+          <Button variant="outline" size="sm">
+            <Filter className="w-4 h-4 mr-2" />
+            Filter by Type
+          </Button>
+        </div>
+      </div>
       
       <Card>
         <CardContent className="p-6">
@@ -366,45 +576,313 @@ const Dashboard = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Files</h2>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm">
+            <Filter className="w-4 h-4 mr-2" />
+            Filter by Type
+          </Button>
+          <Button>
+            <Upload className="w-4 h-4 mr-2" />
+            Upload File
+          </Button>
+        </div>
+      </div>
+      
+      <Card>
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>File Name</TableHead>
+                  <TableHead>Property</TableHead>
+                  <TableHead>Type</TableHead>
+                  <TableHead>Uploaded By</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {demoFiles.map((file, index) => (
+                  <TableRow key={index} className="hover:bg-gray-50">
+                    <TableCell className="font-medium">{file.name}</TableCell>
+                    <TableCell>{file.property}</TableCell>
+                    <TableCell>
+                      <Badge variant="outline">{file.type}</Badge>
+                    </TableCell>
+                    <TableCell>{file.uploadedBy}</TableCell>
+                    <TableCell className="text-sm text-gray-600">{file.date}</TableCell>
+                    <TableCell>
+                      <div className="flex gap-1">
+                        <Button variant="ghost" size="sm">
+                          <Eye className="w-4 h-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm">
+                          <Download className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
+  const renderLeases = () => (
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Lease Management</h2>
         <Button>
           <Plus className="w-4 h-4 mr-2" />
-          Upload File
+          Add Lease
         </Button>
       </div>
       
       <Card>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="border-b">
-                <tr className="text-left">
-                  <th className="p-4 font-medium">File Name</th>
-                  <th className="p-4 font-medium">Property</th>
-                  <th className="p-4 font-medium">Type</th>
-                  <th className="p-4 font-medium">Uploaded By</th>
-                  <th className="p-4 font-medium">Date</th>
-                  <th className="p-4 font-medium">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {demoFiles.map((file, index) => (
-                  <tr key={index} className="border-b hover:bg-gray-50">
-                    <td className="p-4 font-medium">{file.name}</td>
-                    <td className="p-4">{file.property}</td>
-                    <td className="p-4">
-                      <Badge variant="outline">{file.type}</Badge>
-                    </td>
-                    <td className="p-4">{file.uploadedBy}</td>
-                    <td className="p-4 text-sm text-gray-600">{file.date}</td>
-                    <td className="p-4">
-                      <Button variant="ghost" size="sm">
-                        <Download className="w-4 h-4" />
-                      </Button>
-                    </td>
-                  </tr>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Tenant Name</TableHead>
+                  <TableHead>Property</TableHead>
+                  <TableHead>Unit</TableHead>
+                  <TableHead>Start Date</TableHead>
+                  <TableHead>End Date</TableHead>
+                  <TableHead>Monthly Rent</TableHead>
+                  <TableHead>Payment Status</TableHead>
+                  <TableHead>Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {demoLeases.map((lease) => (
+                  <TableRow key={lease.id} className="hover:bg-gray-50">
+                    <TableCell className="font-medium">{lease.tenantName}</TableCell>
+                    <TableCell>{lease.property}</TableCell>
+                    <TableCell>{lease.unit}</TableCell>
+                    <TableCell>{lease.startDate}</TableCell>
+                    <TableCell>{lease.endDate}</TableCell>
+                    <TableCell>${lease.monthlyRent.toLocaleString()}</TableCell>
+                    <TableCell>
+                      <Badge 
+                        variant={lease.paymentStatus === "Paid" ? "default" : 
+                               lease.paymentStatus === "Late" ? "destructive" : "secondary"}
+                      >
+                        {lease.paymentStatus}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex gap-1">
+                        <Button variant="ghost" size="sm">
+                          <Eye className="w-4 h-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm">
+                          <Edit className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
+  const renderRentRoll = () => (
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Rent Roll</h2>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm">
+            <Filter className="w-4 h-4 mr-2" />
+            Filter by Property
+          </Button>
+          <Button>
+            <Plus className="w-4 h-4 mr-2" />
+            Add Payment
+          </Button>
+        </div>
+      </div>
+      
+      <Card>
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Property</TableHead>
+                  <TableHead>Unit</TableHead>
+                  <TableHead>Tenant</TableHead>
+                  <TableHead>Rent Due</TableHead>
+                  <TableHead>Rent Paid</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Notes</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {demoRentRoll.map((rent, index) => (
+                  <TableRow key={index} className="hover:bg-gray-50">
+                    <TableCell className="font-medium">{rent.property}</TableCell>
+                    <TableCell>{rent.unit}</TableCell>
+                    <TableCell>{rent.tenant}</TableCell>
+                    <TableCell>${rent.rentDue.toLocaleString()}</TableCell>
+                    <TableCell>${rent.rentPaid.toLocaleString()}</TableCell>
+                    <TableCell>
+                      <Badge 
+                        variant={rent.status === "Paid" ? "default" : 
+                               rent.status === "Late" ? "destructive" : "secondary"}
+                      >
+                        {rent.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      <Button variant="ghost" size="sm">
+                        <Edit className="w-4 h-4" />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Summary Card */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Monthly Summary</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <p className="text-sm text-gray-600">Total Due</p>
+              <p className="text-xl font-bold">${demoRentRoll.reduce((sum, rent) => sum + rent.rentDue, 0).toLocaleString()}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">Total Collected</p>
+              <p className="text-xl font-bold text-green-600">${demoRentRoll.reduce((sum, rent) => sum + rent.rentPaid, 0).toLocaleString()}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">Collection Rate</p>
+              <p className="text-xl font-bold">
+                {Math.round((demoRentRoll.reduce((sum, rent) => sum + rent.rentPaid, 0) / demoRentRoll.reduce((sum, rent) => sum + rent.rentDue, 0)) * 100)}%
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
+  const renderMaintenance = () => (
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Maintenance Requests</h2>
+        <Button>
+          <Plus className="w-4 h-4 mr-2" />
+          Create New Ticket
+        </Button>
+      </div>
+
+      {/* Status Columns */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {["Open", "In Progress", "Resolved"].map((status) => {
+          const statusTickets = demoMaintenance.filter(ticket => ticket.status === status);
+          return (
+            <Card key={status}>
+              <CardHeader>
+                <CardTitle className="text-lg">{status} ({statusTickets.length})</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {statusTickets.map((ticket) => (
+                    <div key={ticket.id} className="p-3 border rounded-lg hover:bg-gray-50">
+                      <div className="flex justify-between items-start mb-2">
+                        <p className="font-medium text-sm">{ticket.description}</p>
+                        <Badge 
+                          variant={ticket.priority === "High" ? "destructive" : 
+                                 ticket.priority === "Medium" ? "secondary" : "outline"}
+                          className="text-xs"
+                        >
+                          {ticket.priority}
+                        </Badge>
+                      </div>
+                      <p className="text-xs text-gray-600">{ticket.property} - {ticket.unit}</p>
+                      <p className="text-xs text-gray-600">{ticket.issueType} • ${ticket.estimatedCost}</p>
+                      <p className="text-xs text-gray-600">Assigned to: {ticket.assignee}</p>
+                      <p className="text-xs text-gray-600">Scheduled: {ticket.scheduledDate}</p>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  const renderReports = () => (
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Reports</h2>
+        <Button variant="outline">
+          <Download className="w-4 h-4 mr-2" />
+          Download All
+        </Button>
+      </div>
+      
+      <Card>
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Report Type</TableHead>
+                  <TableHead>Description</TableHead>
+                  <TableHead>Date Range</TableHead>
+                  <TableHead>Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {reports.map((report, index) => (
+                  <TableRow key={index} className="hover:bg-gray-50">
+                    <TableCell className="font-medium">{report.name}</TableCell>
+                    <TableCell className="text-sm text-gray-600">{report.description}</TableCell>
+                    <TableCell>
+                      <Select defaultValue="last30">
+                        <SelectTrigger className="w-40">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="last30">Last 30 Days</SelectItem>
+                          <SelectItem value="last90">Last 90 Days</SelectItem>
+                          <SelectItem value="lastyear">Last Year</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex gap-2">
+                        <Button variant="outline" size="sm">
+                          Generate PDF
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          Generate CSV
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </div>
         </CardContent>
       </Card>
@@ -419,7 +897,7 @@ const Dashboard = () => {
         <CardContent className="p-6">
           <div className="text-center text-gray-500 py-12">
             <Settings className="w-12 h-12 mx-auto mb-4 opacity-50" />
-            <p>Settings panel coming soon</p>
+            <p className="text-lg font-medium">Settings panel coming soon</p>
             <p className="text-sm">Configure your workspace preferences here</p>
           </div>
         </CardContent>
@@ -435,6 +913,10 @@ const Dashboard = () => {
       case "calendar": return renderCalendar();
       case "team": return renderTeamActivity();
       case "files": return renderFiles();
+      case "leases": return renderLeases();
+      case "rentroll": return renderRentRoll();
+      case "maintenance": return renderMaintenance();
+      case "reports": return renderReports();
       case "settings": return renderSettings();
       default: return renderDashboard();
     }
@@ -444,7 +926,7 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gray-50 flex">
       {/* Demo Banner */}
       <div className="fixed top-0 left-0 right-0 bg-blue-600 text-white text-center py-2 text-sm z-50">
-        🎯 You're viewing the AbodexOS demo. Contact us to unlock full access.
+        🎯 You are viewing a live demo of AbodexOS. Join early access to deploy a full workspace for your team.
       </div>
 
       {/* Sidebar */}
@@ -495,10 +977,10 @@ const Dashboard = () => {
               </Button>
               <div className="relative">
                 <Search className="w-4 h-4 absolute left-3 top-3 text-gray-400" />
-                <input
+                <Input
                   type="text"
-                  placeholder="Search properties, tasks..."
-                  className="pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Search properties, tasks, leases..."
+                  className="pl-10 w-80"
                 />
               </div>
             </div>
@@ -519,11 +1001,9 @@ const Dashboard = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
                   <DropdownMenuItem>Profile</DropdownMenuItem>
                   <DropdownMenuItem>Settings</DropdownMenuItem>
-                  <DropdownMenuSeparator />
+                  <Separator />
                   <DropdownMenuItem>Sign out</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
