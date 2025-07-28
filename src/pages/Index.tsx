@@ -108,9 +108,9 @@ const Index = () => {
 
   /* static data (features, tiers, comparison) -------------------------- */
   const features = [
-    { icon: Upload, title: "Compliance Agent", description: "Flags missing clauses and checks documents for regulatory and legal risks." },
-    { icon: Bot, title: "GPT Agent", description: "Answers deal, document, and compliance questions using natural language interface." },
-    { icon: BarChart3, title: "AI Analyst", description: "Extracts key financial data and terms from leases and LOIs." },
+    { icon: Upload, title: "Automated Deal & Document Intelligence", description: "PDF extraction, flagging" },
+    { icon: Bot, title: "Dynamic Task & Checklist Engine", description: "Automated workflows & checklists, assign reviewers, set statuses, and enable visual progress tracking" },
+    { icon: BarChart3, title: "Track Real-time Progress", description: "Stakeholder Collaboration & Role-Based Access, IC workflow" },
   ];
   const pricingTiers = [
     { name: "Growth", price: "$4k", period: "/yr", features: [""], popular: false, cta: "Contact Sales" },
@@ -170,84 +170,46 @@ const Index = () => {
       {/* HERO */}
       {/* ────────────────── HERO ────────────────── */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        {/* Skyline background image */}
-        <img
-          src="/uploads/skyline.png"
-          alt="Skyline"
-          className="absolute top-0 left-1/2 w-[1200px] max-w-none -translate-x-1/2 opacity-10 pointer-events-none select-none"
-          style={{ zIndex: 0 }}
-        />
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <Badge className="mb-6 bg-blue-50 text-blue-700">🚀 Now in Private Beta</Badge>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="text-left lg:text-left">
+          <Badge className="mb-6 bg-blue-50 text-blue-700">🚀 The Future of Deal Management</Badge>
 
           <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-            Close CRE Deals on One Platform
+            AI-Powered Operating System for your Real Estate Transactions
           </h1>
 
           <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
             Abodex is a private, secure AI platform that plugs into any CRE firm’s internal data — underwriting models, offering memos, rent rolls, leases, emails — and turns it into a set of AI copilots.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button
-              size="lg"
-              onClick={() => setShowWaitlistModal(true)}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-4"
-            >
-              Join Early Access
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-lg px-8 py-4"
-              asChild
-            >
-              <a href="/dashboard">Try AbodexOS</a>
-            </Button>
-          </div>
-
-          {/* Hero visual */}
-          <div className="relative max-w-5xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
-              <div className="bg-gradient-to-r from-slate-800 to-slate-900 p-6">
-                {/* window controls */}
-                <div className="flex items-center space-x-2 mb-4">
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full" />
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full" />
-                    <div className="w-3 h-3 bg-green-500 rounded-full" />
-                  </div>
-                  <span className="text-slate-400 text-sm ml-4">AbodexOS – Document Processing</span>
-                </div>
-                {/* three-column layout */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-                  {/* input */}
-                  <div className="space-y-2">
-                    <div className="text-blue-400 text-sm font-medium">INPUT</div>
-                    <div className="bg-slate-700 p-3 rounded text-slate-300 text-sm">
-                      📄 lease_agreement.pdf<br />
-                      📊 rent_roll.xlsx<br />
-                      📋 offering_memo.pdf
-                    </div>
-                  </div>
-                  {/* robot */}
-                  <div className="flex items-center justify-center">
-                    <Bot className="w-8 h-8 text-purple-400" />
-                  </div>
-                  {/* output */}
-                  <div className="space-y-2">
-                    <div className="text-green-400 text-sm font-medium">OUTPUT</div>
-                    <div className="bg-slate-700 p-3 rounded text-slate-300 text-sm font-mono">
-      {`{
-        "noi": 485000,
-        "cap_rate": 6.2,
-        "avg_rent_psf": 28.50
-      }`}
-                    </div>
-                  </div>
-                </div>
+              <div className="flex flex-col sm:flex-row gap-4 justify-start mb-12">
+                <Button
+                  size="lg"
+                  onClick={() => setShowWaitlistModal(true)}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-4"
+                >
+                  Join Early Access
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-lg px-8 py-4"
+                  asChild
+                >
+                  <a href="/dashboard">Try AbodexOS</a>
+                </Button>
               </div>
+            </div>
+
+            {/* Hero visual - right side */}
+            <div className="relative">
+              <img
+                src="/uploads/hero_image.png"
+                alt="Abodex platform interface"
+                className="w-full h-auto rounded-2xl shadow-2xl"
+              />
             </div>
           </div>
         </div>
@@ -285,7 +247,7 @@ const Index = () => {
             Everything You Need in One Platform
           </h2>
           <p className="text-xl text-slate-600 mb-16">
-            An externalized, modular GPT — with per-client vector storage, secure APIs, and smart modules.
+            An externalized, modular platform — with per-client vector storage, secure APIs, and smart modules.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((f, i) => (
@@ -344,45 +306,35 @@ const Index = () => {
         </div>
       </section>
 
-      {/* DEMO ------------------------------------------------------------ */}
-      <section id="demo" className="py-20">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            See Abodex in Action
+      {/* TRANSACTION TYPES ------------------------------------------------- */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            Any Transaction, Anywhere
           </h2>
-          <p className="text-xl text-slate-600 mb-12">
-            Watch how we transform complex real estate documents into structured
-            data
+          <p className="text-xl text-slate-600 mb-16">
+            Supported Transaction Types
           </p>
-          <div className="bg-slate-900 rounded-2xl p-8 text-left">
-            <div className="flex items-center justify-between mb-6">
-              <span className="text-slate-400">
-                Demo: Document Processing
-              </span>
-              <Button
-                size="sm"
-                className="bg-blue-600 hover:bg-blue-700"
-                onClick={() => setShowWaitlistModal(true)}
-              >
-                <Play className="w-4 h-4 mr-2" />
-                Try the Beta
-              </Button>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="text-left">
+              <h3 className="text-lg font-semibold mb-2">Acquisitions</h3>
+              <p className="text-slate-600">from OM intake to IC approval</p>
             </div>
-            <div className="space-y-3 text-slate-300 font-mono text-sm">
-              <div>→ Uploading lease_agreement.pdf...</div>
-              <div>→ AI extracting key terms...</div>
-              <div>→ Found: 15 clauses, 8 financial terms</div>
-              <div className="text-green-400">✓ Processing complete</div>
-              <div className="bg-slate-800 p-4 rounded mt-4">
-                <div className="text-blue-400 mb-2">Ask a question:</div>
-                <div className="text-white">
-                  "What's the total NOI for this property?"
-                </div>
-                <div className="text-green-400 mt-2">
-                  💡 Based on the rent roll and operating expenses, the NOI is
-                  $485,000 annually.
-                </div>
-              </div>
+            <div className="text-left">
+              <h3 className="text-lg font-semibold mb-2">Dispositions</h3>
+              <p className="text-slate-600">prep, diligence, and listing execution</p>
+            </div>
+            <div className="text-left">
+              <h3 className="text-lg font-semibold mb-2">Leasing</h3>
+              <p className="text-slate-600">track LOIs, abstracts, and approvals</p>
+            </div>
+            <div className="text-left">
+              <h3 className="text-lg font-semibold mb-2">Development</h3>
+              <p className="text-slate-600">manage entitlement, budgeting, and permits</p>
+            </div>
+            <div className="text-left">
+              <h3 className="text-lg font-semibold mb-2">Refinance / Recapitalizations</h3>
+              <p className="text-slate-600">coordinate lenders and documents</p>
             </div>
           </div>
         </div>
