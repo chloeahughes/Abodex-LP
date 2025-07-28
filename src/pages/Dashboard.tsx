@@ -45,7 +45,8 @@ import {
   Trash2,
   Eye,
   Save,
-  X
+  X,
+  MessageSquare
 } from "lucide-react";
 
 const Dashboard = () => {
@@ -67,6 +68,7 @@ const Dashboard = () => {
     { id: "properties", label: "Properties", icon: Building2 },
     { id: "tasks", label: "Tasks", icon: CheckSquare },
     { id: "calendar", label: "Calendar", icon: CalendarIcon },
+    { id: "communication", label: "Communication Hub", icon: MessageSquare },
     { id: "team", label: "Team Activity", icon: Users },
     { id: "files", label: "Files", icon: FileText },
     { id: "leases", label: "Lease Management", icon: Home },
@@ -868,6 +870,68 @@ const Dashboard = () => {
     </div>
   );
 
+  const renderCommunicationHub = () => (
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Communication Hub</h2>
+        <Button>
+          <Plus className="w-4 h-4 mr-2" />
+          New Thread
+        </Button>
+      </div>
+      
+      <Card className="h-[700px]">
+        <CardContent className="p-0 h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full p-6">
+            {/* Thread Sidebar */}
+            <div className="lg:col-span-1 border border-slate-200 rounded-lg bg-white">
+              <div className="p-4 border-b border-slate-200">
+                <h3 className="font-semibold text-slate-900 mb-4">Active Conversations</h3>
+                <div className="relative mb-4">
+                  <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                  <Input placeholder="Search conversations..." className="pl-10" />
+                </div>
+              </div>
+
+              <div className="overflow-y-auto max-h-[500px]">
+                {[
+                  { id: 1, title: "Downtown Office Complex", lastMessage: "Contract ready for review", time: "2 min ago", unread: 2, participants: 4 },
+                  { id: 2, title: "Lakeside Apartments", lastMessage: "Environmental report uploaded", time: "1 hour ago", unread: 0, participants: 3 },
+                  { id: 3, title: "Sunset Retail Plaza", lastMessage: "Legal team feedback", time: "3 hours ago", unread: 1, participants: 6 }
+                ].map((thread) => (
+                  <div key={thread.id} className="p-4 border-b border-slate-100 cursor-pointer hover:bg-slate-50">
+                    <div className="flex items-start justify-between mb-2">
+                      <span className="font-medium text-slate-900">{thread.title}</span>
+                      {thread.unread > 0 && (
+                        <Badge className="bg-red-500 text-white text-xs">{thread.unread}</Badge>
+                      )}
+                    </div>
+                    <p className="text-sm text-slate-600 mb-1">{thread.lastMessage}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-slate-400">{thread.time}</span>
+                      <span className="text-xs text-slate-400">{thread.participants} participants</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Message Area */}
+            <div className="lg:col-span-2 border border-slate-200 rounded-lg bg-white flex flex-col">
+              <div className="flex-1 flex items-center justify-center text-slate-400">
+                <div className="text-center">
+                  <MessageSquare className="w-16 h-16 mx-auto mb-4" />
+                  <p className="text-lg font-medium">Select a conversation to view messages</p>
+                  <p className="text-sm">Choose from the conversations on the left or create a new one</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
   const renderCalendar = () => (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -1632,6 +1696,7 @@ const Dashboard = () => {
       case "properties": return renderProperties();
       case "tasks": return renderTasks();
       case "calendar": return renderCalendar();
+      case "communication": return renderCommunicationHub();
       case "team": return renderTeamActivity();
       case "files": return renderFiles();
       case "leases": return renderLeases();
