@@ -1712,12 +1712,12 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gray-50 flex">
       {/* Demo Banner */}
       <div className="fixed top-0 left-0 right-0 bg-blue-600 text-white text-center py-2 text-sm z-50">
-        🎯 You are viewing a live demo of AbodexOS. Join early access to deploy a full workspace for your team.
+        You are viewing a live demo of AbodexOS. Join early access to deploy a full workspace for your team.
       </div>
 
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-white border-r border-gray-200 transition-all duration-300 fixed left-0 top-0 bottom-0 z-40`}>
-        <div className="pt-12 pb-4 px-4">
+      <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-white border-r border-gray-200 transition-all duration-300 fixed left-0 top-0 bottom-0 z-40 flex flex-col`}>
+        <div className="pt-12 pb-4 px-4 flex-1">
           <a href="/" className="flex items-center space-x-3 mb-8">
             <img src="/lovable-uploads/899b7d53-4900-45b1-a75f-b55c92ff10b6.png" alt="AbodexOS" className="w-8 h-8 rounded-lg object-cover" />
             {sidebarOpen && <span className="font-bold text-lg">AbodexOS</span>}
@@ -1743,6 +1743,17 @@ const Dashboard = () => {
               );
             })}
           </nav>
+        </div>
+        
+        {/* Join Early Access Button */}
+        <div className="p-4">
+          <Button 
+            onClick={() => window.open('https://lovable.dev', '_blank')}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm"
+            size="sm"
+          >
+            {sidebarOpen ? 'Join Early Access' : '🚀'}
+          </Button>
         </div>
       </div>
 

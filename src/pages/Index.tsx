@@ -518,13 +518,6 @@ const Index = () => {
                 />
               </div>
 
-              {/* perk banner */}
-              <div className="rounded-lg bg-blue-50 p-4">
-                <p className="text-sm text-blue-700">
-                  🎁 <strong>Beta Perk:</strong> Get 50 documents processed free
-                  during our private beta!
-                </p>
-              </div>
 
               {/* actions */}
               <div className="flex space-x-3">
