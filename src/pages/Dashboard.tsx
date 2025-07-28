@@ -16,6 +16,8 @@ import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { Calendar } from "@/components/ui/calendar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { toast } from "@/hooks/use-toast";
+import { addProfile } from "@/api/profileService";
 import { Switch } from "@/components/ui/switch";
 import { 
   LayoutDashboard, 
@@ -62,6 +64,12 @@ const Dashboard = () => {
   const [showAddLease, setShowAddLease] = useState(false);
   const [showAddPayment, setShowAddPayment] = useState(false);
   const [showCreateTicket, setShowCreateTicket] = useState(false);
+  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
+  
+  // Waitlist form state
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
 
   const navigationItems = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -426,6 +434,115 @@ const Dashboard = () => {
       </DialogContent>
     </Dialog>
   );
+
+  // Waitlist Modal component
+  const WaitlistModal = () => {
+    const handleWaitlistSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!email || !name) {
+        toast({
+          title: "Please fill in required fields",
+          description: "Name and email are required to join the waitlist.",
+          variant: "destructive",
+        });
+        return;
+      }
+      try {
+        await addProfile({ name, email, company });
+        toast({
+          title: "Welcome to Abodex! 🚀",
+          description:
+            "You've been added to our early-access waitlist. We'll be in touch soon!",
+        });
+      } catch (err: any) {
+        toast({
+          title: "Could not add you to the waitlist",
+          description: err.message,
+          variant: "destructive",
+        });
+        return;
+      }
+      setEmail("");
+      setName("");
+      setCompany("");
+      setShowWaitlistModal(false);
+    };
+
+    return (
+      <>
+        {showWaitlistModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+            <div className="w-full max-w-md rounded-2xl bg-white p-8">
+              <h3 className="mb-6 text-center text-2xl font-bold text-slate-900">
+                Join Abodex Early Access
+              </h3>
+
+              <form onSubmit={handleWaitlistSubmit} className="space-y-4">
+                {/* name */}
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-slate-700">
+                    Name *
+                  </label>
+                  <Input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Your full name"
+                    required
+                  />
+                </div>
+
+                {/* email */}
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-slate-700">
+                    Email *
+                  </label>
+                  <Input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+
+                {/* company */}
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-slate-700">
+                    Company
+                  </label>
+                  <Input
+                    type="text"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                    placeholder="Your company name"
+                  />
+                </div>
+
+                {/* actions */}
+                <div className="flex space-x-3">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="flex-1"
+                    onClick={() => setShowWaitlistModal(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    type="submit"
+                    className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                  >
+                    Join Waitlist
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  };
 
   // Enhanced Demo Data
   const demoStats = {
@@ -1748,7 +1865,7 @@ const Dashboard = () => {
         {/* Join Early Access Button */}
         <div className="p-4">
           <Button 
-            onClick={() => window.open('https://lovable.dev', '_blank')}
+            onClick={() => setShowWaitlistModal(true)}
             className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm"
             size="sm"
           >
@@ -1826,6 +1943,7 @@ const Dashboard = () => {
       <AddLeaseModal />
       <AddPaymentModal />
       <CreateTicketModal />
+      <WaitlistModal />
     </div>
   );
 };
