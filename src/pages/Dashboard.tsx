@@ -1655,7 +1655,8 @@ const Dashboard = () => {
         <div className="pt-12 pb-4 px-4">
           <div className="flex items-center space-x-3 mb-8">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">A</span>
+              {/* Replace this with your uploaded logo image */}
+              <img src="/uploads/abodexlogo.jpg" alt="AbodexOS" className="w-8 h-8 rounded-lg object-cover" />
             </div>
             {sidebarOpen && <span className="font-bold text-lg">AbodexOS</span>}
           </div>
@@ -1722,8 +1723,8 @@ const Dashboard = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Settings</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => window.location.href = '/profile'}>Profile</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => window.location.href = '/settings'}>Settings</DropdownMenuItem>
                   <Separator />
                   <DropdownMenuItem>Sign out</DropdownMenuItem>
                 </DropdownMenuContent>
