@@ -175,7 +175,7 @@ const Index = () => {
             <div className="text-left lg:text-left">
           <Badge className="mb-6 bg-blue-50 text-blue-700">🚀 The Future of Deal Management</Badge>
 
-          <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
             AI-Powered Operating System for your Real Estate Transactions
           </h1>
 
@@ -206,8 +206,8 @@ const Index = () => {
             {/* Hero visual - right side */}
             <div className="relative">
               <img
-                src="/uploads/hero_image.png"
-                alt="Abodex platform interface"
+                src="/lovable-uploads/d368858c-dddf-4000-b8d9-c832a52a66d3.png"
+                alt="Abodex dashboard interface"
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />
             </div>
@@ -265,6 +265,44 @@ const Index = () => {
         </div>
       </section>
 
+      {/* TRANSACTION TYPES ------------------------------------------------- */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            Any Transaction, Anywhere
+          </h2>
+          <p className="text-xl text-slate-600 mb-16">
+            Supported Transaction Types
+          </p>
+          <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div className="text-left bg-white p-6 rounded-lg shadow-sm border">
+              <h3 className="text-lg font-semibold mb-3 flex items-center">
+                📥 Acquisitions
+              </h3>
+              <p className="text-slate-600">From deal sourcing to IC approval — centralize OM intake, automate due diligence, and track every milestone on the path to close.</p>
+            </div>
+            <div className="text-left bg-white p-6 rounded-lg shadow-sm border">
+              <h3 className="text-lg font-semibold mb-3 flex items-center">
+                🏷️ Dispositions
+              </h3>
+              <p className="text-slate-600">Streamline exit workflows — prep, organize diligence materials, and coordinate brokers and legal teams to launch listings with confidence.</p>
+            </div>
+            <div className="text-left bg-white p-6 rounded-lg shadow-sm border">
+              <h3 className="text-lg font-semibold mb-3">Leasing</h3>
+              <p className="text-slate-600">Track LOIs, abstracts, and approvals — manage lease negotiation, upload key docs, and auto-extract terms for underwriting in one place.</p>
+            </div>
+            <div className="text-left bg-white p-6 rounded-lg shadow-sm border">
+              <h3 className="text-lg font-semibold mb-3">Refinance / Recapitalizations</h3>
+              <p className="text-slate-600">Coordinate lenders, capital calls, and investor docs — upload term sheets, monitor maturity timelines, and sync across legal and finance teams.</p>
+            </div>
+            <div className="text-left bg-white p-6 rounded-lg shadow-sm border lg:col-span-2">
+              <h3 className="text-lg font-semibold mb-3">Development</h3>
+              <p className="text-slate-600">Manage the full entitlement-to-permit lifecycle — assign tasks for budgeting, approvals, and document submissions with version tracking and alerts.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* COMPARISON TABLE ----------------------------------------------- */}
       <section className="py-20 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -301,40 +339,6 @@ const Index = () => {
                   ))}
                 </tbody>
               </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* TRANSACTION TYPES ------------------------------------------------- */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-            Any Transaction, Anywhere
-          </h2>
-          <p className="text-xl text-slate-600 mb-16">
-            Supported Transaction Types
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-left">
-              <h3 className="text-lg font-semibold mb-2">Acquisitions</h3>
-              <p className="text-slate-600">from OM intake to IC approval</p>
-            </div>
-            <div className="text-left">
-              <h3 className="text-lg font-semibold mb-2">Dispositions</h3>
-              <p className="text-slate-600">prep, diligence, and listing execution</p>
-            </div>
-            <div className="text-left">
-              <h3 className="text-lg font-semibold mb-2">Leasing</h3>
-              <p className="text-slate-600">track LOIs, abstracts, and approvals</p>
-            </div>
-            <div className="text-left">
-              <h3 className="text-lg font-semibold mb-2">Development</h3>
-              <p className="text-slate-600">manage entitlement, budgeting, and permits</p>
-            </div>
-            <div className="text-left">
-              <h3 className="text-lg font-semibold mb-2">Refinance / Recapitalizations</h3>
-              <p className="text-slate-600">coordinate lenders and documents</p>
             </div>
           </div>
         </div>
