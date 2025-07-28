@@ -417,112 +417,23 @@ const Index = () => {
         </div>
       </section>
 
-      {/* DEMO SECTION --------------------------------------------------- */}
-      <section id="demo" className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center">
-            Stakeholder Communication Hub to Each Deal
+      {/* CTA SECTION --------------------------------------------------- */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+            Be First to Use AbodexOS
           </h2>
-          
-          <div className="bg-white rounded-2xl p-8 shadow-lg">
-            <div className="mb-6">
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Objective:</h3>
-              <p className="text-slate-600">
-                Build a centralized, searchable communication feed within each deal to replace scattered emails and texts—enabling clean, contextual collaboration among brokers, legal teams, lenders, and investors.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div>
-                <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
-                  📂 Deal-Level Communication Tab
-                </h4>
-                <p className="text-slate-600 mb-2"><strong>UI:</strong></p>
-                <ul className="text-slate-600 space-y-1 text-sm">
-                  <li>• Add a new tab in the Deal Room view: "Messages" or "Communicate"</li>
-                  <li>• Appears alongside Overview, Files, Tasks, and Timeline</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
-                  💬 Message Threads & Comments
-                </h4>
-                <p className="text-slate-600 mb-2"><strong>Components:</strong></p>
-                <ul className="text-slate-600 space-y-1 text-sm">
-                  <li>• Threaded conversations tied to entire deal or specific task/document</li>
-                  <li>• Ability to @mention users</li>
-                  <li>• Timestamped messages with sender avatar/name</li>
-                  <li>• Markdown support (bold, bullets, links)</li>
-                  <li>• Display most recent thread at top</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
-                  📎 File + Task Linking
-                </h4>
-                <p className="text-slate-600 mb-2"><strong>Enhancement:</strong></p>
-                <ul className="text-slate-600 space-y-1 text-sm">
-                  <li>• Drag and drop files directly into conversation</li>
-                  <li>• "Link to Task" or "Link to File" button in message composer</li>
-                  <li>• Hover preview of linked items (e.g., Lease_Agreement.pdf or "Finalize Estoppel Cert" task)</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
-                  🔔 Notifications
-                </h4>
-                <p className="text-slate-600 mb-2"><strong>Trigger Events:</strong></p>
-                <ul className="text-slate-600 space-y-1 text-sm">
-                  <li>• User @mentioned</li>
-                  <li>• New message in a thread user follows</li>
-                  <li>• New thread started in a deal they're assigned to</li>
-                </ul>
-                <p className="text-slate-600 mb-2 mt-3"><strong>Delivery Options:</strong></p>
-                <ul className="text-slate-600 space-y-1 text-sm">
-                  <li>• Email, Slack (if integrated), In-app badge / feed</li>
-                  <li>• Optional: "Daily Digest" summary</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
-                  🔒 Role-Based Visibility
-                </h4>
-                <p className="text-slate-600 mb-2"><strong>Logic:</strong></p>
-                <ul className="text-slate-600 space-y-1 text-sm">
-                  <li>• Messages tagged "Legal," "Internal," or "Lender" visible only to relevant roles</li>
-                  <li>• Admins can set default visibility per user type</li>
-                  <li>• "Mark as External" toggle to allow investor/broker visibility</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
-                  🔍 Search + Filter
-                </h4>
-                <p className="text-slate-600 mb-2"><strong>Functionality:</strong></p>
-                <ul className="text-slate-600 space-y-1 text-sm">
-                  <li>• Global search bar across messages</li>
-                  <li>• Filter by: User, Thread label, Time window, @mentioned people</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="mt-8 bg-slate-50 rounded-lg p-6">
-              <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
-                ✅ Quality-of-Life Features
-              </h4>
-              <ul className="text-slate-600 space-y-2">
-                <li>• Pin important threads to top (e.g., "Next Steps Before Closing")</li>
-                <li>• Reactions (👍 ✅ ⚠️ ❗)</li>
-                <li>• "Resolve Thread" to archive irrelevant or completed discussions</li>
-                <li>• Auto-thread creation for key task updates (e.g., "Task marked blocked → opens system thread")</li>
-              </ul>
-            </div>
-          </div>
+          <p className="text-xl text-slate-600 mb-8">
+            Join our early access program and transform how you manage real estate transactions.
+          </p>
+          <Button
+            size="lg"
+            onClick={() => setShowWaitlistModal(true)}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-4"
+          >
+            Join Early Access
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
         </div>
       </section>
 
