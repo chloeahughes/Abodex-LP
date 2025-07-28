@@ -397,45 +397,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA ------------------------------------------------------------- */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Be First to Use AbodexOS
-          </h2>
-          <p className="text-xl text-blue-100 mb-8">
-            Join our private beta and get 50 prompts free
-          </p>
-          <Button
-            size="lg"
-            onClick={() => setShowWaitlistModal(true)}
-            className="bg-white text-blue-600 hover:bg-slate-100 text-lg px-8 py-4"
-          >
-            Join Early Access
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-        </div>
-      </section>
-
-      {/* CTA SECTION --------------------------------------------------- */}
-      <section className="py-20 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            Be First to Use AbodexOS
-          </h2>
-          <p className="text-xl text-slate-600 mb-8">
-            Join our early access program and transform how you manage real estate transactions.
-          </p>
-          <Button
-            size="lg"
-            onClick={() => setShowWaitlistModal(true)}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-4"
-          >
-            Join Early Access
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-        </div>
-      </section>
 
       {/* FOOTER ---------------------------------------------------------- */}
       <footer className="bg-slate-900 text-slate-300 py-16">

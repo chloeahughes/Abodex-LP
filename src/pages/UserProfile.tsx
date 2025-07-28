@@ -164,8 +164,11 @@ const UserProfile = () => {
 
           {/* Main Content */}
           <div className="lg:col-span-2">
-            <Tabs defaultValue="activity" className="space-y-6">
-              <TabsList className="grid w-full grid-cols-3">
+            <Tabs defaultValue="tasks" className="space-y-6">
+              <TabsList className="grid w-full grid-cols-4">
+                <TabsTrigger value="tasks">
+                  My Tasks
+                </TabsTrigger>
                 <TabsTrigger value="activity">
                   <Activity className="w-4 h-4 mr-2" />
                   Activity
@@ -179,6 +182,80 @@ const UserProfile = () => {
                   Security
                 </TabsTrigger>
               </TabsList>
+
+              <TabsContent value="tasks" className="space-y-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>My Active Tasks</CardTitle>
+                    <CardDescription>Tasks assigned to you across all properties and deals</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      {[
+                        { task: "Review Environmental Report", property: "Downtown Office Complex", dueDate: "Today", priority: "High", status: "In Progress" },
+                        { task: "Finalize Lease Agreement", property: "Lakeside Apartments", dueDate: "Tomorrow", priority: "High", status: "Pending" },
+                        { task: "Upload Insurance Documents", property: "Sunset Retail Plaza", dueDate: "In 3 days", priority: "Medium", status: "Not Started" },
+                        { task: "Schedule Property Inspection", property: "Metro Business Center", dueDate: "Next week", priority: "Low", status: "Not Started" }
+                      ].map((task, index) => (
+                        <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-2 mb-1">
+                              <p className="font-medium">{task.task}</p>
+                              <Badge variant={task.priority === 'High' ? 'destructive' : task.priority === 'Medium' ? 'default' : 'secondary'}>
+                                {task.priority}
+                              </Badge>
+                            </div>
+                            <p className="text-sm text-gray-600">{task.property}</p>
+                            <p className="text-xs text-gray-500">Due: {task.dueDate}</p>
+                          </div>
+                          <Badge variant={task.status === 'In Progress' ? 'default' : task.status === 'Pending' ? 'secondary' : 'outline'}>
+                            {task.status}
+                          </Badge>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Property Progress</CardTitle>
+                    <CardDescription>Your assigned properties and completion status</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {[
+                        { property: "Downtown Office Complex", role: "Lead Analyst", progress: 85, stage: "Due Diligence", tasks: { completed: 17, total: 20 } },
+                        { property: "Lakeside Apartments", role: "Financial Analyst", progress: 60, stage: "Underwriting", tasks: { completed: 9, total: 15 } },
+                        { property: "Sunset Retail Plaza", role: "Legal Coordinator", progress: 25, stage: "Initial Review", tasks: { completed: 3, total: 12 } }
+                      ].map((property, index) => (
+                        <div key={index} className="p-4 border rounded-lg">
+                          <div className="flex items-center justify-between mb-2">
+                            <div>
+                              <p className="font-medium">{property.property}</p>
+                              <p className="text-sm text-gray-600">{property.role}</p>
+                            </div>
+                            <Badge variant="outline">{property.stage}</Badge>
+                          </div>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-sm text-gray-600">Overall Progress</span>
+                            <span className="text-sm font-medium">{property.progress}%</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                            <div 
+                              className="bg-blue-600 h-2 rounded-full" 
+                              style={{ width: `${property.progress}%` }}
+                            ></div>
+                          </div>
+                          <p className="text-xs text-gray-500">
+                            {property.tasks.completed} of {property.tasks.total} tasks completed
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
 
               <TabsContent value="activity" className="space-y-4">
                 <Card>
