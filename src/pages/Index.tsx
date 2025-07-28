@@ -141,16 +141,16 @@ const Index = () => {
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
+            <a href="/" className="flex items-center space-x-2">
               {/* Logo image */}
               <img
-                src="/uploads/abodexoslogo.png"   // public folder path
-                alt="Abodex logo"
+                src="/lovable-uploads/899b7d53-4900-45b1-a75f-b55c92ff10b6.png"
+                alt="AbodexOS logo"
                 className="w-8 h-8 rounded-lg"
               />
               {/* Brand name */}
-              <span className="text-xl font-bold text-slate-900">Abodex</span>
-            </div>
+              <span className="text-xl font-bold text-slate-900">AbodexOS</span>
+            </a>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-slate-600 hover:text-slate-900 transition-colors">Features</a>
               <a href="#pricing"  className="text-slate-600 hover:text-slate-900 transition-colors">Pricing</a>
@@ -421,11 +421,11 @@ const Index = () => {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <img
-                  src="/uploads/abodexoslogo.png"                // <-- path inside the public folder
-                  alt="Abodex logo"
-                  className="w-8 h-8 rounded-lg"         // same 8×8 size as before
+                  src="/lovable-uploads/899b7d53-4900-45b1-a75f-b55c92ff10b6.png"
+                  alt="AbodexOS logo"
+                  className="w-8 h-8 rounded-lg"
                 />
-                <span className="text-xl font-bold text-white">Abodex</span>
+                <span className="text-xl font-bold text-white">AbodexOS</span>
               </div>
               <p className="text-slate-400 mb-4">Centralized Operating System for your CRE deals.</p>
             </div>

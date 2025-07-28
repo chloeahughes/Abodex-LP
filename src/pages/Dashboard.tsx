@@ -1718,13 +1718,10 @@ const Dashboard = () => {
       {/* Sidebar */}
       <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-white border-r border-gray-200 transition-all duration-300 fixed left-0 top-0 bottom-0 z-40`}>
         <div className="pt-12 pb-4 px-4">
-          <div className="flex items-center space-x-3 mb-8">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              {/* Replace this with your uploaded logo image */}
-              <img src="/uploads/abodexlogo.jpg" alt="AbodexOS" className="w-8 h-8 rounded-lg object-cover" />
-            </div>
+          <a href="/" className="flex items-center space-x-3 mb-8">
+            <img src="/lovable-uploads/899b7d53-4900-45b1-a75f-b55c92ff10b6.png" alt="AbodexOS" className="w-8 h-8 rounded-lg object-cover" />
             {sidebarOpen && <span className="font-bold text-lg">AbodexOS</span>}
-          </div>
+          </a>
           
           <nav className="space-y-1">
             {navigationItems.map((item) => {
