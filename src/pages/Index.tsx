@@ -108,9 +108,9 @@ const Index = () => {
 
   /* static data (features, tiers, comparison) -------------------------- */
   const features = [
-    { icon: Upload, title: "Automated Deal & Document Intelligence", description: "PDF extraction, flagging" },
-    { icon: Bot, title: "Dynamic Task & Checklist Engine", description: "Automated workflows & checklists, assign reviewers, set statuses, and enable visual progress tracking" },
-    { icon: BarChart3, title: "Track Real-time Progress", description: "Stakeholder Collaboration & Role-Based Access, IC workflow" },
+    { icon: Upload, title: "Automated Deal & Document Intelligence", description: "Leverage AI to parse Offering Memos, rent rolls, and lease agreements. Auto-tag key deal terms, flag anomalies, and reduce hours of manual review to seconds." },
+    { icon: Bot, title: "Dynamic Task & Checklist Engine", description: "Auto-generate task lists by asset type, assign reviewers, set due dates, and track status visually with kanban boards or calendar views. Keep teams accountable without micromanaging." },
+    { icon: BarChart3, title: "Track Real-time Progress", description: "Monitor deal momentum with role-based access, comment threads, and progress dashboards. IC approvals, legal reviews, and uploads—all visible in one shared command center." },
   ];
   const pricingTiers = [
     { name: "Growth", price: "$4k", period: "/yr", features: [""], popular: false, cta: "Contact Sales" },
@@ -173,9 +173,9 @@ const Index = () => {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-left lg:text-left">
-          <Badge className="mb-6 bg-blue-50 text-blue-700">🚀 The Future of Deal Management</Badge>
+          <Badge className="mb-6 bg-blue-50 text-blue-700">The Future of Deal Management</Badge>
 
-          <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+          <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
             AI-Powered Operating System for your Real Estate Transactions
           </h1>
 
@@ -208,7 +208,7 @@ const Index = () => {
               <img
                 src="/lovable-uploads/d368858c-dddf-4000-b8d9-c832a52a66d3.png"
                 alt="Abodex dashboard interface"
-                className="w-full h-auto rounded-2xl shadow-2xl"
+                className="w-4/5 h-auto rounded-2xl shadow-2xl mx-auto"
               />
             </div>
           </div>
@@ -266,38 +266,38 @@ const Index = () => {
       </section>
 
       {/* TRANSACTION TYPES ------------------------------------------------- */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Any Transaction, Anywhere
           </h2>
-          <p className="text-xl text-slate-600 mb-16">
+          <p className="text-xl text-blue-100 mb-16">
             Supported Transaction Types
           </p>
           <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <div className="text-left bg-white p-6 rounded-lg shadow-sm border">
-              <h3 className="text-lg font-semibold mb-3 flex items-center">
-                📥 Acquisitions
+            <div className="text-left bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
+              <h3 className="text-lg font-semibold mb-3 text-white">
+                Acquisitions
               </h3>
-              <p className="text-slate-600">From deal sourcing to IC approval — centralize OM intake, automate due diligence, and track every milestone on the path to close.</p>
+              <p className="text-blue-100">Centralize OM intake, automate due diligence, and track every milestone on the path to close.</p>
             </div>
-            <div className="text-left bg-white p-6 rounded-lg shadow-sm border">
-              <h3 className="text-lg font-semibold mb-3 flex items-center">
-                🏷️ Dispositions
+            <div className="text-left bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
+              <h3 className="text-lg font-semibold mb-3 text-white">
+                Dispositions
               </h3>
-              <p className="text-slate-600">Streamline exit workflows — prep, organize diligence materials, and coordinate brokers and legal teams to launch listings with confidence.</p>
+              <p className="text-blue-100">Streamline exit workflows—prep, organize diligence materials, and coordinate brokers and legal teams to launch listings with confidence.</p>
             </div>
-            <div className="text-left bg-white p-6 rounded-lg shadow-sm border">
-              <h3 className="text-lg font-semibold mb-3">Leasing</h3>
-              <p className="text-slate-600">Track LOIs, abstracts, and approvals — manage lease negotiation, upload key docs, and auto-extract terms for underwriting in one place.</p>
+            <div className="text-left bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
+              <h3 className="text-lg font-semibold mb-3 text-white">Leasing</h3>
+              <p className="text-blue-100">Track LOIs, abstracts, and approvals—manage lease negotiation, upload key docs, and auto-extract terms for underwriting in one place.</p>
             </div>
-            <div className="text-left bg-white p-6 rounded-lg shadow-sm border">
-              <h3 className="text-lg font-semibold mb-3">Refinance / Recapitalizations</h3>
-              <p className="text-slate-600">Coordinate lenders, capital calls, and investor docs — upload term sheets, monitor maturity timelines, and sync across legal and finance teams.</p>
+            <div className="text-left bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
+              <h3 className="text-lg font-semibold mb-3 text-white">Refinance / Recapitalizations</h3>
+              <p className="text-blue-100">Coordinate lenders, capital calls, and investor docs—upload term sheets, monitor maturity timelines, and sync across legal and finance teams.</p>
             </div>
-            <div className="text-left bg-white p-6 rounded-lg shadow-sm border lg:col-span-2">
-              <h3 className="text-lg font-semibold mb-3">Development</h3>
-              <p className="text-slate-600">Manage the full entitlement-to-permit lifecycle — assign tasks for budgeting, approvals, and document submissions with version tracking and alerts.</p>
+            <div className="text-left bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20 lg:col-span-2">
+              <h3 className="text-lg font-semibold mb-3 text-white">Development</h3>
+              <p className="text-blue-100">Manage the full entitlement-to-permit lifecycle—assign tasks for budgeting, approvals, and document submissions with version tracking and alerts.</p>
             </div>
           </div>
         </div>
@@ -401,7 +401,7 @@ const Index = () => {
       <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            🚀 Be First to Use AbodexOS
+            Be First to Use AbodexOS
           </h2>
           <p className="text-xl text-blue-100 mb-8">
             Join our private beta and get 50 prompts free
@@ -414,6 +414,115 @@ const Index = () => {
             Join Early Access
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
+        </div>
+      </section>
+
+      {/* DEMO SECTION --------------------------------------------------- */}
+      <section id="demo" className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center">
+            Stakeholder Communication Hub to Each Deal
+          </h2>
+          
+          <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="mb-6">
+              <h3 className="text-xl font-semibold text-slate-900 mb-3">Objective:</h3>
+              <p className="text-slate-600">
+                Build a centralized, searchable communication feed within each deal to replace scattered emails and texts—enabling clean, contextual collaboration among brokers, legal teams, lenders, and investors.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div>
+                <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+                  📂 Deal-Level Communication Tab
+                </h4>
+                <p className="text-slate-600 mb-2"><strong>UI:</strong></p>
+                <ul className="text-slate-600 space-y-1 text-sm">
+                  <li>• Add a new tab in the Deal Room view: "Messages" or "Communicate"</li>
+                  <li>• Appears alongside Overview, Files, Tasks, and Timeline</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+                  💬 Message Threads & Comments
+                </h4>
+                <p className="text-slate-600 mb-2"><strong>Components:</strong></p>
+                <ul className="text-slate-600 space-y-1 text-sm">
+                  <li>• Threaded conversations tied to entire deal or specific task/document</li>
+                  <li>• Ability to @mention users</li>
+                  <li>• Timestamped messages with sender avatar/name</li>
+                  <li>• Markdown support (bold, bullets, links)</li>
+                  <li>• Display most recent thread at top</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+                  📎 File + Task Linking
+                </h4>
+                <p className="text-slate-600 mb-2"><strong>Enhancement:</strong></p>
+                <ul className="text-slate-600 space-y-1 text-sm">
+                  <li>• Drag and drop files directly into conversation</li>
+                  <li>• "Link to Task" or "Link to File" button in message composer</li>
+                  <li>• Hover preview of linked items (e.g., Lease_Agreement.pdf or "Finalize Estoppel Cert" task)</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+                  🔔 Notifications
+                </h4>
+                <p className="text-slate-600 mb-2"><strong>Trigger Events:</strong></p>
+                <ul className="text-slate-600 space-y-1 text-sm">
+                  <li>• User @mentioned</li>
+                  <li>• New message in a thread user follows</li>
+                  <li>• New thread started in a deal they're assigned to</li>
+                </ul>
+                <p className="text-slate-600 mb-2 mt-3"><strong>Delivery Options:</strong></p>
+                <ul className="text-slate-600 space-y-1 text-sm">
+                  <li>• Email, Slack (if integrated), In-app badge / feed</li>
+                  <li>• Optional: "Daily Digest" summary</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+                  🔒 Role-Based Visibility
+                </h4>
+                <p className="text-slate-600 mb-2"><strong>Logic:</strong></p>
+                <ul className="text-slate-600 space-y-1 text-sm">
+                  <li>• Messages tagged "Legal," "Internal," or "Lender" visible only to relevant roles</li>
+                  <li>• Admins can set default visibility per user type</li>
+                  <li>• "Mark as External" toggle to allow investor/broker visibility</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+                  🔍 Search + Filter
+                </h4>
+                <p className="text-slate-600 mb-2"><strong>Functionality:</strong></p>
+                <ul className="text-slate-600 space-y-1 text-sm">
+                  <li>• Global search bar across messages</li>
+                  <li>• Filter by: User, Thread label, Time window, @mentioned people</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-8 bg-slate-50 rounded-lg p-6">
+              <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+                ✅ Quality-of-Life Features
+              </h4>
+              <ul className="text-slate-600 space-y-2">
+                <li>• Pin important threads to top (e.g., "Next Steps Before Closing")</li>
+                <li>• Reactions (👍 ✅ ⚠️ ❗)</li>
+                <li>• "Resolve Thread" to archive irrelevant or completed discussions</li>
+                <li>• Auto-thread creation for key task updates (e.g., "Task marked blocked → opens system thread")</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
