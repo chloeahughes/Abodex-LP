@@ -153,7 +153,6 @@ const Index = () => {
             </a>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-slate-600 hover:text-slate-900 transition-colors">Features</a>
-              <a href="#pricing"  className="text-slate-600 hover:text-slate-900 transition-colors">Pricing</a>
               <a href="#demo"     className="text-slate-600 hover:text-slate-900 transition-colors">Demo</a>
               <Button
                 onClick={() => setShowWaitlistModal(true)}
@@ -191,14 +190,6 @@ const Index = () => {
                 >
                   Join Early Access
                   <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-lg px-8 py-4"
-                  asChild
-                >
-                  <a href="/dashboard">Try AbodexOS</a>
                 </Button>
               </div>
             </div>
@@ -344,56 +335,23 @@ const Index = () => {
         </div>
       </section>
 
-      {/* PRICING --------------------------------------------------------- */}
-      <section id="pricing" className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Simple, Transparent Pricing
+      {/* GET EARLY ACCESS ------------------------------------------------ */}
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Get Early Access Today
           </h2>
-          <p className="text-xl text-slate-600 mb-16">
-            Choose the plan that fits your deal flow
+          <p className="text-xl text-blue-100 mb-8">
+            Join hundreds of real estate professionals transforming their deal management
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {pricingTiers.map((tier, i) => (
-              <Card
-                key={i}
-                className={`relative ${
-                  tier.popular ? "ring-2 ring-blue-500 shadow-xl" : "shadow-lg"
-                }`}
-              >
-                {tier.popular && (
-                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500">
-                    Most Popular
-                  </Badge>
-                )}
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-semibold mb-2">{tier.name}</h3>
-                  <div className="mb-6">
-                    <span className="text-4xl font-bold">{tier.price}</span>
-                    <span className="text-slate-600">{tier.period}</span>
-                  </div>
-                  <ul className="space-y-3 mb-8">
-                    {tier.features.map((f, fi) => (
-                      <li key={fi} className="flex items-center">
-                        <Check className="w-4 h-4 text-green-500 mr-3" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    onClick={() => setShowWaitlistModal(true)}
-                    className={`w-full ${
-                      tier.popular
-                        ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                        : "bg-slate-900 hover:bg-slate-800"
-                    }`}
-                  >
-                    {tier.cta}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <Button
+            size="lg"
+            onClick={() => setShowWaitlistModal(true)}
+            className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-4"
+          >
+            Join Early Access
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
         </div>
       </section>
 
